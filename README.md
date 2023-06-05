@@ -19,7 +19,7 @@ It also contains a dark mode and a light mode\
 
 # Onboarding Screen
 ![on_boarding_screen-01](https://github.com/yousabgithub/smart_shop_clean_architecture/assets/97704843/0f238289-a130-4847-bd69-9e439fcd25c5)
-# Login && Singn up Screen
+# Login && Sign up Screen
 ![login_screen-01](https://github.com/yousabgithub/smart_shop_clean_architecture/assets/97704843/1d20d913-2693-4560-9cf5-6609216fb30a)
 # The application is in Arabic language mode
 ![image1](https://github.com/yousabgithub/smart_shop_clean_architecture/assets/97704843/4c2bb077-78eb-4266-bdb7-ca8962fc08b4)
