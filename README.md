@@ -1,16 +1,9 @@
-# shop_app_clean_architecture
+# Description
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+A shopping app that has some products on the home screen when you click on any product
+ Moves to a new screen (by hero animation) showing product details,
+ Add or remove a product from the wish list or cart list which also calculates the total price.
+The application is divided into several groups, each group offering its own products
+-The application contains both Arabic and English languages
+It also contains a dark mode and a light mode\
+-The application is designed to be responsive to all different screen sizes.
