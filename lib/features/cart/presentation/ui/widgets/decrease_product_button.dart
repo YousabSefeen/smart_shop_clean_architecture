@@ -19,7 +19,7 @@ class DecreaseProductButton extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isDark = ThemeAndLanguageCubit.object(context).theme == ThemeMode.dark;
     return Padding(
-      padding: EdgeInsets.only(left: 5.w, right: 20.w),
+      padding: const EdgeInsets.only(left:45,right: 45  ),
       child: CircleAvatar(
         radius: 15.r,
         backgroundColor: isDark ? const Color(0xff52796f) : Colors.black,

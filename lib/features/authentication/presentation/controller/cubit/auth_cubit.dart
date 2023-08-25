@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shop_app_clean_architecture/core/utils/app_routers.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 
 import '../../../../../core/base  use case/base_use_case.dart';
@@ -62,7 +63,7 @@ class AuthCubit extends Cubit<AuthStates> {
         if (r.status) {
           token = r.data!.token;
           pref.setString('token', token);
-          Navigator.of(context).pushNamed(BottomNavigationScreen.route);
+          AppRouters.go(context: context, route: BottomNavigationScreen.route);
           customToast(
             context: context,
             message: state.register!.message!,
@@ -103,7 +104,7 @@ class AuthCubit extends Cubit<AuthStates> {
           token = r.data!.token;
           pref.setString('token', token);
 
-          Navigator.of(context).pushNamed(BottomNavigationScreen.route);
+          AppRouters.go(context: context, route: BottomNavigationScreen.route);
           customToast(
             context: context,
             message: state.login!.message!,
@@ -183,9 +184,9 @@ class AuthCubit extends Cubit<AuthStates> {
     ///The following code is used to delete the list of search products
     /// when accessing the search page by another user
     SearchProductsCubit.object(context).searchProducts.clear();
-    //**
-    Navigator.of(context, rootNavigator: true)
-        .pushReplacementNamed(LoginScreen.route);
+
+    AppRouters.goAndReplacement(context: context, route: LoginScreen.route);
+
     final pref = await SharedPreferences.getInstance();
 
     pref.remove('token');

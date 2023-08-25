@@ -26,6 +26,8 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double height=MediaQuery.sizeOf(context).height;
+    double width=MediaQuery.sizeOf(context).width;
     final searchCubit = SearchProductsCubit.object(context);
     return BlocConsumer<SearchProductsCubit, SearchProductsStates>(
       listener: (context, state) {},

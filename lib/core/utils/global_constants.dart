@@ -4,15 +4,19 @@ import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../features/home data/domain/entities/products.dart';
+
 //
-MediaQueryData queryData =
-    MediaQueryData.fromWindow(WidgetsBinding.instance.window);
-double width = queryData.size.width;
-double height = queryData.size.height;
+// MediaQueryData queryData =
+//     MediaQueryData.fromWindow(WidgetsBinding.instance.window);
+// double width = queryData.size.width;
+// double height = queryData.size.height;
 
 GetIt sl = GetIt.instance;
 String token = '';
-
+List<Products> allProducts = [];
+Map<int, bool> favorites = {};
+Map<int, bool> carts = {};
 ///**************************************************************
 
 Locale currentLocale = const Locale("en");
@@ -22,8 +26,7 @@ String language = "en";
 TextDirection defaultDirection = TextDirection.rtl;
 
 ///**************************************************************
-Map<int, bool> favorites = {};
-Map<int, bool> carts = {};
+
 
 customSnackBar({
   required BuildContext context,

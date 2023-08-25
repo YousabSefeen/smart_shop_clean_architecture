@@ -20,10 +20,8 @@ class FavoriteProductChangeButton extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return IconButton(
-          onPressed: () async {
-            await FavoritesCubit.object(context)
-                .changeFavorite(id: productId, context: context);
-          },
+          onPressed: () async => await FavoritesCubit.object(context)
+              .changeFavorite(id: productId, context: context),
           icon: Icon(
             favorites[productId] ?? false
                 ? Icons.star

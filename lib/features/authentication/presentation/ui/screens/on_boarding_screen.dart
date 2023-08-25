@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shop_app_clean_architecture/core/utils/app_routers.dart';
 
-import '../../../../../core/utils/global_constants.dart';
 import '../../../../global widgets/custom_indicator.dart';
 import 'login_screen.dart';
 
@@ -37,8 +37,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   PageController boardingController = PageController();
 
-  submit() async {
-    Navigator.of(context).pushReplacementNamed(LoginScreen.route);
+  void submit() async {
+    AppRouters.goAndReplacement(context: context, route: LoginScreen.route);
 
     final pref = await SharedPreferences.getInstance();
 
@@ -49,6 +49,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.sizeOf(context).height;
+    double width = MediaQuery.sizeOf(context).width;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,

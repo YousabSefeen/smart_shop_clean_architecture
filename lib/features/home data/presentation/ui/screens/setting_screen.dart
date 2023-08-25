@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shop_app_clean_architecture/core/utils/app_routers.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/theme_change_button.dart';
 
-import '../../../../../core/utils/global_constants.dart';
 import '../../../../../core/utils/theme and language/components/language _change _button.dart';
 import '../../../../authentication/presentation/controller/cubit/auth_cubit.dart';
 import '../../../../authentication/presentation/ui/screens/profile_screen.dart';
@@ -13,6 +13,8 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.sizeOf(context).width;
+
     ThemeData theme = Theme.of(context);
 
     return Scaffold(
@@ -39,9 +41,8 @@ class SettingScreen extends StatelessWidget {
                         Icons.arrow_forward_ios,
                         color: theme.secondaryHeaderColor,
                       ),
-                      onPressed: () =>
-                          Navigator.of(context, rootNavigator: true)
-                              .pushNamed(ProfileScreen.route),
+                      onPressed: () => AppRouters.go(
+                          context: context, route: ProfileScreen.route),
                     ),
                   ),
                 ),
@@ -77,6 +78,8 @@ class SettingScreen extends StatelessWidget {
     required BuildContext context,
     Widget? trailing,
   }) {
+    double height = MediaQuery.sizeOf(context).height;
+
     ThemeData theme = Theme.of(context);
     return ListTile(
       contentPadding: EdgeInsets.only(top: height * 0.05),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 
-import '../../global_constants.dart';
 import '../controller/theme_and_language_cubit.dart';
 
 class ThemeChangeButton extends StatelessWidget {
@@ -11,6 +10,7 @@ class ThemeChangeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
+    double height = MediaQuery.sizeOf(context).height;
     final themeCubit = ThemeAndLanguageCubit.object(context);
     final isDark = themeCubit.theme == ThemeMode.dark;
 

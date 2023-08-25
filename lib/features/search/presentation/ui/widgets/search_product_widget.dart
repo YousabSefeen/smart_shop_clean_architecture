@@ -2,11 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:shop_app_clean_architecture/core/utils/app_routers.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 
 import '../../../../cart/presentation/ui/widgets/cart_product_change_button.dart';
 import '../../../../favorites/presentation/ui/widgets/favorite_product_change_button.dart';
-import '../../../../home data/presentation/ui/screens/product_details.dart';
+import '../../../../../core/common presentation/screens/product_details_screen.dart';
 import '../../../domain/entities/search_products.dart';
 
 class SearchProductWidget extends StatelessWidget {
@@ -32,13 +33,10 @@ class SearchProductWidget extends StatelessWidget {
         horizontalOffset: 300,
         child: FadeInAnimation(
           child: InkWell(
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (_) => ProductDetailsScreen(
-                  id: product.id,
-                ),
-              ),
-            ),
+            onTap: () => AppRouters.go(
+                context: context,
+                route: ProductDetailsScreen.route,
+                arguments: product.id),
             child: GridTile(
               footer: Padding(
                 padding: EdgeInsets.only(top: 3.h),

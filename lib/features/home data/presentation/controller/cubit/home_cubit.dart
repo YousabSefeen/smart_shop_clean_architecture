@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/base  use case/base_use_case.dart';
 import '../../../../../core/utils/enums/request_state.dart';
 import '../../../../../core/utils/global_constants.dart';
-import '../../../domain/entities/products.dart';
 import '../../../domain/use cases/get_banners_use_case.dart';
 import '../../../domain/use cases/get_products_use_cases.dart';
 import '../states/home_states.dart';
@@ -41,8 +40,6 @@ class HomeCubit extends Cubit<HomeState> {
     );
   }
 
-  List<Products> productsDetails = [];
-
   FutureOr<void> getProducts() async {
     final result = await getProductsUseCase(const NoParameters());
 
@@ -54,24 +51,17 @@ class HomeCubit extends Cubit<HomeState> {
         ),
       ),
       (r) {
-        ///i am using this way because to clear search list
-        ///when log out because don't show to another user
-        productsDetails = r;
-        //**
         emit(
           state.copyWith(
             products: r,
             productsState: RequestState.loaded,
           ),
         );
+        allProducts.addAll(r);
         for (var product in r) {
-          favorites.addAll({
-            product.id: product.inFavorite,
-          });
+          favorites.addAll({product.id: product.inFavorite});
 
-          carts.addAll({
-            product.id: product.inCart,
-          });
+          carts.addAll({product.id: product.inCart});
         }
       },
     );

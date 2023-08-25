@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 
 import '../../../../../core/utils/enums/request_state.dart';
-import '../../../../../core/utils/global_constants.dart';
 import '../../../../global widgets/an_error_widget.dart';
 import '../../../../global widgets/loading_widget.dart';
 import '../../controller/cubit/auth_cubit.dart';
@@ -27,6 +26,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.sizeOf(context).height;
+    double width = MediaQuery.sizeOf(context).width;
     AuthCubit authCubit = AuthCubit.object(context);
     return Scaffold(
       appBar: AppBar(

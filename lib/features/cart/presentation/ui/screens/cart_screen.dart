@@ -4,13 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 
 import '../../../../../core/utils/enums/request_state.dart';
-import '../../../../../core/utils/global_constants.dart';
 import '../../../../../core/utils/theme and language/controller/theme_and_language_cubit.dart';
 import '../../../../global widgets/an_error_widget.dart';
 import '../../../../global widgets/loading_widget.dart';
 import '../../controller/cubit/cart_cubit.dart';
 import '../../controller/states/cart_states.dart';
-import '../widgets/cart_item_widget.dart';
+import '../widgets/cart_product.dart';
 import '../widgets/empty_cart.dart';
 
 class CartScreen extends StatelessWidget {
@@ -18,6 +17,8 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.sizeOf(context).height;
+    double width = MediaQuery.sizeOf(context).width;
     TextTheme textContext = Theme.of(context).textTheme;
     bool isDark = ThemeAndLanguageCubit.object(context).theme == ThemeMode.dark;
     return Scaffold(
@@ -87,9 +88,9 @@ class CartScreen extends StatelessWidget {
                               shrinkWrap: true,
                               physics: const BouncingScrollPhysics(),
                               itemCount: state.cart!.cartItems!.length,
-                              padding: EdgeInsets.symmetric(
-                                vertical: 10.h,
-                                horizontal: 15.w,
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 10,
+                                horizontal: 20,
                               ),
                               itemBuilder: (context, index) {
                                 final int quantity =
@@ -97,7 +98,7 @@ class CartScreen extends StatelessWidget {
 
                                 final int uniqueId =
                                     state.cart!.cartItems![index].id;
-                                return CartItemWidget(
+                                return CartProduct(
                                   cartItems: state.cart!.cartItems![index],
                                   quantity: quantity,
                                   uniqueId: uniqueId,

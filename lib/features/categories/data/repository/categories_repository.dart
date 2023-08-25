@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../core/errors/exception.dart';
 import '../../../../core/errors/failure.dart';
-import '../../domain/base repository/base_categories_ repository.dart';
+import '../../domain/base categories repository/base_categories_repository.dart';
 import '../../domain/entities/categories.dart';
 import '../../domain/entities/category_details.dart';
 import '../../domain/use cases/get_category_details_use_case.dart';

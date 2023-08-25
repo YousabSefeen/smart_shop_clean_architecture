@@ -3,32 +3,38 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 
-import '../../../../../core/utils/global_constants.dart';
-import '../../../../../core/utils/theme and language/controller/theme_and_language_cubit.dart';
-import '../../../../global widgets/custom_indicator.dart';
-import '../../../../global widgets/show_discount.dart';
-import '../../../domain/entities/products.dart';
-import '../../controller/cubit/home_cubit.dart';
+import '../../utils/global_constants.dart';
+import '../../utils/theme and language/controller/theme_and_language_cubit.dart';
+import '../../../features/global widgets/custom_indicator.dart';
+import '../widgets/show_discount.dart';
+import '../../../features/home data/domain/entities/products.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   static const route = 'ProductDetailsScreen';
-  final int? id;
 
-  const ProductDetailsScreen({Key? key, this.id}) : super(key: key);
+  const ProductDetailsScreen({Key? key}) : super(key: key);
 
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+  late int id;
+  late Products product;
+
+  @override
+  void didChangeDependencies() {
+    id = ModalRoute.of(context)!.settings.arguments as int;
+    super.didChangeDependencies();
+    product = allProducts.firstWhere((product) => product.id == id);
+  }
+
   PageController pageController = PageController();
   int _currentPage = 0;
 
   @override
   Widget build(BuildContext context) {
-    Products product = HomeCubit.object(context)
-        .productsDetails
-        .firstWhere((product) => product.id == widget.id);
+    double height = MediaQuery.sizeOf(context).height;
 
     bool isDark = ThemeAndLanguageCubit.object(context).theme == ThemeMode.dark;
 

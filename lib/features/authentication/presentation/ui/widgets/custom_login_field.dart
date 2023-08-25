@@ -13,6 +13,7 @@ class CustomLoginField extends StatelessWidget {
   final TextInputType textInputType;
 
   final String? Function(String?)? validator;
+ final  void Function(String)?   onFieldSubmitted;
 
   const CustomLoginField({
     this.controller,
@@ -22,6 +23,7 @@ class CustomLoginField extends StatelessWidget {
     required this.textInputType,
     required this.validator,
     this.suffixIcon,
+    this.onFieldSubmitted,
     super.key,
   });
 
@@ -30,6 +32,7 @@ class CustomLoginField extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(bottom: 10.h),
       child: TextFormField(
+        onFieldSubmitted: onFieldSubmitted,
         controller: controller,
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(

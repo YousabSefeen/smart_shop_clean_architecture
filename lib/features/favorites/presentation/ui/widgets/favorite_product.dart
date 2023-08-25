@@ -1,31 +1,29 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:shop_app_clean_architecture/core/common%20presentation/widgets/custom_cached_network_image.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 
-import '../../../../../core/utils/global_constants.dart';
-import '../../../../global widgets/show_discount.dart';
-import '../../../../home data/presentation/ui/screens/product_details.dart';
+import '../../../../../core/common presentation/screens/product_details_screen.dart';
+import '../../../../../core/common presentation/widgets/show_discount.dart';
+import '../../../../../core/utils/app_routers.dart';
 import '../../../domain/entities/favorites.dart';
 import '../../../presentation/controller/cubit/favorites_cubit.dart';
 import '../../../presentation/controller/states/favorites_state.dart';
 import '../../../presentation/ui/widgets/favorite_product_change_button.dart';
 
-class FavoriteProductItem extends StatelessWidget {
+class FavoriteProduct extends StatelessWidget {
   final Favorites productItemFavorite;
 
   final int index;
 
-  const FavoriteProductItem({
-    required this.productItemFavorite,
-    required this.index,
-    super.key,
-  });
+  const FavoriteProduct(
+      {required this.productItemFavorite, required this.index, super.key});
 
   @override
   Widget build(BuildContext context) {
+
     ProductItemFavorite product = productItemFavorite.productItemFavorite!;
 
     TextTheme textContext = Theme.of(context).textTheme;
@@ -35,7 +33,7 @@ class FavoriteProductItem extends StatelessWidget {
           previous.changeFavoriteState != current.changeFavoriteState,
       builder: (context, state) {
         return Padding(
-          padding: EdgeInsets.symmetric(vertical: 10.h),
+          padding: const EdgeInsets.symmetric(vertical: 10),
           child: AnimationConfiguration.staggeredList(
             position: index,
             duration: const Duration(milliseconds: 300),
@@ -43,11 +41,10 @@ class FavoriteProductItem extends StatelessWidget {
               horizontalOffset: 300,
               child: FadeInAnimation(
                 child: InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (_) => ProductDetailsScreen(id: product.id),
-                    ));
-                  },
+                  onTap: () => AppRouters.go(
+                      context: context,
+                      route: ProductDetailsScreen.route,
+                      arguments: product.id),
                   child: Card(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
@@ -61,29 +58,21 @@ class FavoriteProductItem extends StatelessWidget {
                         Stack(
                           alignment: Alignment.topLeft,
                           children: [
-                            CachedNetworkImage(
+                            CustomCachedNetworkImage(
                               imageUrl: product.imageUrl,
-                              placeholder: (ctx, s) =>
-                                  Image.asset('assets/images/loading.gif'),
-                              errorWidget: (ctx, s, _) =>
-                                  Image.asset('assets/images/imageError.png'),
+                              height: MediaQuery.sizeOf(context).height * 0.3,
                               width: double.infinity,
-                              height: width * 0.25,
-                              fit: BoxFit.fill,
                             ),
                             if (product.discount != 0)
                               ShowDiscount(discount: product.discount),
                           ],
                         ),
                         Padding(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 7.h,
-                            horizontal: 7.w,
-                          ),
+                          padding: const EdgeInsets.all(20),
                           child: Text(
                             product.name,
                             style: textContext.titleSmall,
-                            maxLines: 3,
+                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
@@ -113,7 +102,7 @@ class FavoriteProductItem extends StatelessWidget {
                             FavoriteProductChangeButton(productId: product.id)
                           ],
                         ),
-                        SizedBox(height: 8.h),
+                        const SizedBox(height: 10),
                       ],
                     ),
                   ),

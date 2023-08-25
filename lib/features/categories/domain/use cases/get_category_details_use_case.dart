@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 
 import '../../../../core/base  use case/base_use_case.dart';
 import '../../../../core/errors/failure.dart';
-import '../base repository/base_categories_ repository.dart';
+import '../base categories repository/base_categories_repository.dart';
 import '../entities/category_details.dart';
 
 class GetCategoryDetailsUseCase

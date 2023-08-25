@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 
-import '../../../../../core/utils/global_constants.dart';
 import '../../../../../core/utils/theme and language/controller/theme_and_language_cubit.dart';
-import '../../../../categories/presentation/ui/widgets/category_item_widget.dart';
+import '../../../../categories/presentation/ui/widgets/categories_list.dart';
 import '../widgets/banners_items.dart';
-import '../widgets/products_items_widget.dart';
+import '../widgets/products_list.dart';
 
 class HomeScreen extends StatelessWidget {
   static const route = 'HomeScreen';
@@ -15,6 +14,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.sizeOf(context).height;
+
     final themeCubit = ThemeAndLanguageCubit.object(context);
     final isDark = themeCubit.theme == ThemeMode.dark;
     return Scaffold(
@@ -30,28 +31,26 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: Container(
-          margin: EdgeInsets.symmetric(horizontal: width * 0.04),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: height * 0.23,
-                  child: const BannersItems(),
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          padding: const EdgeInsets.only(left: 15, right: 15, bottom: 25),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: height * 0.2,
+                child: const BannersItems(),
+              ),
+              const CategoriesList(),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10, top: 10),
+                child: Text(
+                  'bestSelling'.translate(context),
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
-                const CategoryItemWidget(),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20.h),
-                  child: Text(
-                    'bestSelling'.translate(context),
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                ),
-                const ProductItemWidget(),
-                SizedBox(height: 30.h),
-              ],
-            ),
+              ),
+              const ProductsList(),
+            ],
           ),
         ),
       ),

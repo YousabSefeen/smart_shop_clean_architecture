@@ -1,11 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app_clean_architecture/core/common%20presentation/widgets/custom_shimmer.dart';
 
+import '../../../../../core/common presentation/widgets/custom_cached_network_image.dart';
 import '../../../../../core/utils/enums/request_state.dart';
 import '../../../../global widgets/an_error_widget.dart';
-import '../../../../global widgets/loading_widget.dart';
 import '../../controller/cubit/home_cubit.dart';
 import '../../controller/states/home_states.dart';
 
@@ -14,13 +14,15 @@ class BannersItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return BlocBuilder<HomeCubit, HomeState>(
       buildWhen: (previous, current) =>
           previous.bannersState != current.bannersState,
       builder: (context, state) {
         switch (state.bannersState) {
           case RequestState.loading:
-            return const LoadingWidgets();
+            return const CustomShimmer(
+                height: double.infinity, width: double.infinity);
           case RequestState.loaded:
             return CarouselSlider.builder(
               itemCount: state.banners.length,
@@ -31,14 +33,9 @@ class BannersItems extends StatelessWidget {
                 scrollDirection: Axis.vertical,
               ),
               itemBuilder: (context, index, _) {
-                return CachedNetworkImage(
+                return CustomCachedNetworkImage(
                   imageUrl: state.banners[index].imageUrl,
-                  errorWidget: (context, s, _) =>
-                      Image.asset('assets/images/imageError.png'),
-                  placeholder: (context, _) =>
-                      Image.asset('assets/images/loading.gif'),
                   width: double.infinity,
-                  fit: BoxFit.cover,
                 );
               },
             );

@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shop_app_clean_architecture/core/utils/app_routers.dart';
 import 'package:shop_app_clean_architecture/core/utils/check%20internet/no_internet_connection_screen.dart';
 
 import 'core/services/initialize_services_locators.dart';
@@ -19,16 +20,11 @@ import 'core/utils/theme and language/controller/theme_and_language_states.dart'
 import 'features/authentication/presentation/controller/cubit/auth_cubit.dart';
 import 'features/authentication/presentation/ui/screens/login_screen.dart';
 import 'features/authentication/presentation/ui/screens/on_boarding_screen.dart';
-import 'features/authentication/presentation/ui/screens/profile_screen.dart';
-import 'features/authentication/presentation/ui/screens/register_screen.dart';
 import 'features/cart/presentation/controller/cubit/cart_cubit.dart';
 import 'features/categories/presentation/controller/cubit/categories_cubit.dart';
-import 'features/categories/presentation/ui/screens/categories_screen.dart';
 import 'features/favorites/presentation/controller/cubit/favorites_cubit.dart';
 import 'features/home data/presentation/controller/cubit/home_cubit.dart';
 import 'features/home data/presentation/ui/screens/bottom_nav_screen.dart';
-import 'features/home data/presentation/ui/screens/home_screen.dart';
-import 'features/home data/presentation/ui/screens/product_details.dart';
 import 'features/search/presentation/controller/cubit/search_products_cubit.dart';
 
 void main() async {
@@ -126,24 +122,13 @@ class _MyAppState extends State<MyApp> {
           // and depending on this the screen will appear.
           //Note that this step is useful for making multiple block providers lazy
           // when there is no internet connection
-          switch (_source.keys.toList()[0]) {
-            case ConnectivityResult.mobile:
-              home = widget.mainScreen;
-              break;
-            case ConnectivityResult.wifi:
-              home = widget.mainScreen;
-              break;
-            case ConnectivityResult.none:
-            default:
-              home = const NoInternetConnectionScreen();
-          }
+          mainScreen();
 
           return ScreenUtilInit(
             designSize: const Size(360, 690),
             minTextAdapt: true,
             splitScreenMode: true,
             builder: (context, _) => MaterialApp(
-              useInheritedMediaQuery: true,
               debugShowCheckedModeBanner: false,
               locale: currentLocale,
               supportedLocales: const [
@@ -169,21 +154,25 @@ class _MyAppState extends State<MyApp> {
               darkTheme: AppThemes.dark,
               themeMode: ThemeAndLanguageCubit.object(context).theme,
               home: home,
-              routes: {
-                LoginScreen.route: (context) => const LoginScreen(),
-                BottomNavigationScreen.route: (context) =>
-                    BottomNavigationScreen(),
-                RegisterScreen.route: (context) => const RegisterScreen(),
-                HomeScreen.route: (context) => const HomeScreen(),
-                ProductDetailsScreen.route: (context) =>
-                    const ProductDetailsScreen(),
-                CategoriesScreen.route: (context) => const CategoriesScreen(),
-                ProfileScreen.route: (context) => const ProfileScreen(),
-              },
+              routes: AppRouters.routes,
             ),
           );
         },
       ),
     );
+  }
+
+  void mainScreen() {
+    switch (_source.keys.toList()[0]) {
+      case ConnectivityResult.mobile:
+        home = widget.mainScreen;
+        break;
+      case ConnectivityResult.wifi:
+        home = widget.mainScreen;
+        break;
+      case ConnectivityResult.none:
+      default:
+        home = const NoInternetConnectionScreen();
+    }
   }
 }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shop_app_clean_architecture/core/utils/app_routers.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 import 'package:shop_app_clean_architecture/features/authentication/presentation/ui/screens/register_screen.dart';
 import 'package:shop_app_clean_architecture/features/authentication/presentation/ui/widgets/custom_logo.dart';
 
-import '../../../../../core/utils/global_constants.dart';
 import '../../controller/cubit/auth_cubit.dart';
 import '../widgets/custom_background.dart';
 import '../widgets/custom_login_button.dart';
@@ -31,6 +31,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.sizeOf(context).height;
+    double width = MediaQuery.sizeOf(context).width;
     return KeyboardDismissOnTap(
       child: Scaffold(
           body: SafeArea(
@@ -90,6 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 },
                                 obscureText: !_show,
                                 suffixIcon: _hideAndShowPasswordButton(),
+                                onFieldSubmitted: (_)=> _submit(context),
                               ),
                               SizedBox(height: 13.h),
                               _isLogin
@@ -113,8 +116,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ),
                                   ),
                                   TextButton(
-                                    onPressed: () => Navigator.of(context)
-                                        .pushNamed(RegisterScreen.route),
+                                    onPressed: () => AppRouters.go(
+                                        context: context,
+                                        route: RegisterScreen.route),
                                     child: Text(
                                       'signUp'.translate(context),
                                       style: TextStyle(
@@ -168,7 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() => _isLogin = !_isLogin);
       await authCubit.login(
         email: _emailController.text.trim(),
-        password: _passwordController.text.trim().trim(),
+        password: _passwordController.text.trim(),
         context: context,
       );
       setState(() => _isLogin = !_isLogin);

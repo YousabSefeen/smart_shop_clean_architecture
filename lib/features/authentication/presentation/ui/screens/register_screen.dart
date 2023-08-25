@@ -3,7 +3,6 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 
-import '../../../../../core/utils/global_constants.dart';
 import '../../../presentation/ui/widgets/custom_background.dart';
 import '../../controller/cubit/auth_cubit.dart';
 import '../widgets/custom_login_button.dart';
@@ -35,6 +34,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.sizeOf(context).height;
+    double width = MediaQuery.sizeOf(context).width;
     final authCubit = AuthCubit.object(context);
     return KeyboardDismissOnTap(
       child: Scaffold(

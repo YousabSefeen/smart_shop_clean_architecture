@@ -3,13 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 
 import '../../../../../core/utils/enums/request_state.dart';
-import '../../../../../core/utils/global_constants.dart';
+
 import '../../../../global widgets/an_error_widget.dart';
 import '../../../../global widgets/loading_widget.dart';
 import '../../../presentation/controller/cubit/favorites_cubit.dart';
 import '../../../presentation/controller/states/favorites_state.dart';
 import '../widgets/empty_favorite.dart';
-import '../widgets/favorite_item.dart';
+import '../widgets/favorite_product.dart';
 
 class FavoritesScreen extends StatelessWidget {
   const FavoritesScreen({Key? key}) : super(key: key);
@@ -35,10 +35,10 @@ class FavoritesScreen extends StatelessWidget {
                         shrinkWrap: true,
                         physics: const BouncingScrollPhysics(),
                         itemCount: state.favorites.length,
-                        padding: EdgeInsets.symmetric(
-                            vertical: height * 0.05, horizontal: width * 0.07),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 18, horizontal: 30),
                         itemBuilder: (context, index) {
-                          return FavoriteProductItem(
+                          return FavoriteProduct(
                             productItemFavorite: state.favorites[index],
                             index: index,
                           );

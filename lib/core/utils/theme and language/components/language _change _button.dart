@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 
-import '../../global_constants.dart';
 import '../controller/theme_and_language_cubit.dart';
 
 class LanguageChangeButton extends StatelessWidget {
@@ -10,6 +9,7 @@ class LanguageChangeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.sizeOf(context).height;
     ThemeData theme = Theme.of(context);
     return ListTile(
       contentPadding: EdgeInsets.only(top: height * 0.05),

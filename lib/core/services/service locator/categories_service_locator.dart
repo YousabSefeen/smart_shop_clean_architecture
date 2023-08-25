@@ -1,6 +1,6 @@
 import '../../../features/categories/data/data source/categories_remote_data_source.dart';
 import '../../../features/categories/data/repository/categories_repository.dart';
-import '../../../features/categories/domain/base repository/base_categories_ repository.dart';
+import '../../../features/categories/domain/base categories repository/base_categories_repository.dart';
 import '../../../features/categories/domain/use cases/get_categories_use_case.dart';
 import '../../../features/categories/domain/use cases/get_category_details_use_case.dart';
 import '../../../features/categories/presentation/controller/cubit/categories_cubit.dart';
