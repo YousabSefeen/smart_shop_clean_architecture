@@ -23,7 +23,6 @@ class FavoriteProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     ProductItemFavorite product = productItemFavorite.productItemFavorite!;
 
     TextTheme textContext = Theme.of(context).textTheme;
@@ -72,7 +71,7 @@ class FavoriteProduct extends StatelessWidget {
                           child: Text(
                             product.name,
                             style: textContext.titleSmall,
-                             maxLines: 3,
+                            maxLines: 3,
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),

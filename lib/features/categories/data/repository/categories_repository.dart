@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 
-import '../../../../core/errors/exception.dart';
 import '../../../../core/errors/failure.dart';
 import '../../domain/base categories repository/base_categories_repository.dart';
 import '../../domain/entities/categories.dart';
@@ -15,29 +15,31 @@ class CategoriesRepository extends BaseCategoriesRepository {
 
   @override
   Future<Either<Failure, List<Categories>>> getCategories() async {
-    final result = await baseCategoriesRemoteDataSource.getCategories();
-
     try {
+      final result = await baseCategoriesRemoteDataSource.getCategories();
       return Right(result);
-    } on ServerException catch (failure) {
-      return Left(
-        ServerFailure(
-          message: failure.errorMessageModel.message,
-        ),
-      );
+    } catch (error) {
+      if (error is DioException) {
+        return Left(ServerFailure.fromDioException(error: error));
+      } else {
+        return Left(ServerFailure(error.toString()));
+      }
     }
   }
 
   @override
   Future<Either<Failure, List<CategoryDetails>>> getCategoryDetails(
       GetCategoryDetailsParameters parameters) async {
-    final result =
-        await baseCategoriesRemoteDataSource.getCategoryDetails(parameters);
-
     try {
+      final result =
+          await baseCategoriesRemoteDataSource.getCategoryDetails(parameters);
       return Right(result);
-    } on ServerException catch (failure) {
-      return Left(ServerFailure(message: failure.errorMessageModel.message));
+    } catch (error) {
+      if (error is DioException) {
+        return Left(ServerFailure.fromDioException(error: error));
+      } else {
+        return Left(ServerFailure(error.toString()));
+      }
     }
   }
 }

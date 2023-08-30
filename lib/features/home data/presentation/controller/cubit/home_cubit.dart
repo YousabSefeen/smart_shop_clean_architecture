@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app_clean_architecture/features/home%20data/domain/entities/products.dart';
 
 import '../../../../../core/base  use case/base_use_case.dart';
 import '../../../../../core/utils/enums/request_state.dart';
@@ -28,7 +29,7 @@ class HomeCubit extends Cubit<HomeState> {
       (l) => emit(
         state.copyWith(
           bannersState: RequestState.error,
-          bannersErrorMessage: l.message,
+          bannersErrorMessage: l.errorMessage,
         ),
       ),
       (r) => emit(
@@ -40,6 +41,8 @@ class HomeCubit extends Cubit<HomeState> {
     );
   }
 
+  List<Products> fake = [];
+
   FutureOr<void> getProducts() async {
     final result = await getProductsUseCase(const NoParameters());
 
@@ -47,22 +50,22 @@ class HomeCubit extends Cubit<HomeState> {
       (l) => emit(
         state.copyWith(
           productsState: RequestState.error,
-          productsErrorMessage: l.message,
+          productsErrorMessage: l.errorMessage,
         ),
       ),
       (r) {
+        allProducts = r;
+        for (var product in r) {
+          favorites.addAll({product.id: product.inFavorite});
+
+          carts.addAll({product.id: product.inCart});
+        }
         emit(
           state.copyWith(
             products: r,
             productsState: RequestState.loaded,
           ),
         );
-        allProducts.addAll(r);
-        for (var product in r) {
-          favorites.addAll({product.id: product.inFavorite});
-
-          carts.addAll({product.id: product.inCart});
-        }
       },
     );
   }

@@ -38,5 +38,9 @@
   "phoneNumber": "Phone Number",
   "updateData": "UPDATE DATA",
   "updateDataMessage": "The profile has been updated",
-  "logout": "LOGOUT"
+  "logout": "LOGOUT",
+  "connected": "Internet connection",
+  "internetConnected": "Internet connection has been reestablished. Please wait while the data loads.",
+  "notInternetConnected": "Could Not Connected",
+  "retry": "Retry"
 }

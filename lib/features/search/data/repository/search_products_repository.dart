@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 
-import '../../../../core/errors/exception.dart';
 import '../../../../core/errors/failure.dart';
 import '../../domain/base search repository/base_search_products_repository.dart';
 import '../../domain/entities/search_products.dart';
@@ -15,17 +15,16 @@ class SearchProductsRepository extends BaseSearchProductsRepository {
   @override
   Future<Either<Failure, List<SearchProducts>>> getSearchProducts(
       SearchProductsParameters parameters) async {
-    final result =
-        await baseSearchProductsRemoteDataSource.getSearchProducts(parameters);
-
     try {
+      final result = await baseSearchProductsRemoteDataSource
+          .getSearchProducts(parameters);
       return Right(result);
-    } on ServerException catch (failure) {
-      return Left(
-        ServerFailure(
-          message: failure.errorMessageModel.message,
-        ),
-      );
+    } catch (error) {
+      if (error is DioException) {
+        return Left(ServerFailure.fromDioException(error: error));
+      } else {
+        return Left(ServerFailure(error.toString()));
+      }
     }
   }
 }

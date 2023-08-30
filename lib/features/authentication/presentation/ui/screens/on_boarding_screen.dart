@@ -116,7 +116,7 @@ Widget buildOnBoardingItem(
           height: constraints.maxHeight * 0.05,
         ),
         SizedBox(
-          height: constraints.maxHeight * 0.08, //0.15,
+          height: constraints.maxHeight * 0.08,
           child: Text(
             onBoardingModel.title,
             style: GoogleFonts.poppins(

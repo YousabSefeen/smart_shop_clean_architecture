@@ -5,10 +5,10 @@ import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/co
 
 import '../../../features/cart/presentation/ui/widgets/cart_product_change_button.dart';
 import '../../../features/favorites/presentation/ui/widgets/favorite_product_change_button.dart';
-import 'show_discount.dart';
 import '../../utils/app_routers.dart';
 import '../screens/product_details_screen.dart';
 import 'custom_cached_network_image.dart';
+import 'show_discount.dart';
 
 class ProductItem extends StatelessWidget {
   final int index;

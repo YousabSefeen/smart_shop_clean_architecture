@@ -7,7 +7,7 @@ import '../../../domain/entities/update_cart.dart';
 
 class CartStates extends Equatable {
   final Cart? cart;
-  final RequestState cartRequestState;
+  final RequestState cartState;
   final String cartErrorMessage;
 
   // ******
@@ -26,7 +26,7 @@ class CartStates extends Equatable {
   //***
   const CartStates({
     this.cart,
-    this.cartRequestState = RequestState.loading,
+    this.cartState = RequestState.loading,
     this.cartErrorMessage = '',
     this.changeCart,
     this.changeCartState = RequestState.loading,
@@ -38,7 +38,7 @@ class CartStates extends Equatable {
 
   CartStates copyWith({
     Cart? cart,
-    RequestState? cartRequestState,
+    RequestState? cartState,
     String? cartErrorMessage,
     ChangeCart? changeCart,
     RequestState? changeCartState,
@@ -49,7 +49,7 @@ class CartStates extends Equatable {
   }) {
     return CartStates(
       cart: cart ?? this.cart,
-      cartRequestState: cartRequestState ?? this.cartRequestState,
+      cartState: cartState ?? this.cartState,
       cartErrorMessage: cartErrorMessage ?? this.cartErrorMessage,
       changeCart: changeCart ?? this.changeCart,
       changeCartState: changeCartState ?? this.changeCartState,
@@ -65,7 +65,7 @@ class CartStates extends Equatable {
   @override
   List<Object?> get props => [
         cart,
-        cartRequestState,
+        cartState,
         cartErrorMessage,
         changeCart,
         changeCartState,

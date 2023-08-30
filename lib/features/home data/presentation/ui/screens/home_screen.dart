@@ -14,9 +14,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.sizeOf(context).height;
-
-    final themeCubit = ThemeAndLanguageCubit.object(context);
+    final themeCubit = AppSettingsCubit.object(context);
     final isDark = themeCubit.theme == ThemeMode.dark;
     return Scaffold(
       appBar: AppBar(
@@ -37,10 +35,7 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: height * 0.2,
-                child: const BannersItems(),
-              ),
+              const BannersItems(),
               const CategoriesList(),
               Padding(
                 padding: const EdgeInsets.only(bottom: 10, top: 10),

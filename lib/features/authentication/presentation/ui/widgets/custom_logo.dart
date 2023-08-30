@@ -22,7 +22,6 @@ class CustomLogo extends StatelessWidget {
       decoration: BoxDecoration(
         color: const Color(0xffdc2f02),
         borderRadius: BorderRadius.circular(20.sp),
-        //border: Border.all(color: Colors.white, width: 2),
         boxShadow: const [
           BoxShadow(
             blurRadius: 8,

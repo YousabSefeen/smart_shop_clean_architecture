@@ -15,7 +15,7 @@ class FavoriteProductChangeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isDark = ThemeAndLanguageCubit.object(context).theme == ThemeMode.dark;
+    bool isDark = AppSettingsCubit.object(context).theme == ThemeMode.dark;
     return BlocConsumer<FavoritesCubit, FavoritesState>(
       listener: (context, state) {},
       builder: (context, state) {

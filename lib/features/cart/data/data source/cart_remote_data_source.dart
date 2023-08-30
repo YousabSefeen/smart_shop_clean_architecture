@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:shop_app_clean_architecture/core/errors/failure.dart';
 
-import '../../../../core/errors/exception.dart';
-import '../../../../core/network/error_message_model.dart';
 import '../../../../core/utils/api_constants.dart';
 import '../../../../core/utils/global_constants.dart';
 import '../../domain/use cases/change_cart_use_case.dart';
@@ -34,9 +33,7 @@ class CartRemoteDataSource extends BaseCartRemoteDataSource {
     if (response.statusCode == 200) {
       return CartModel.fromJson(response.data['data']);
     } else {
-      throw ServerException(
-        errorMessageModel: ErrorMessageModel.fromJson(response.data),
-      );
+      throw ServerFailure(response.data);
     }
   }
 
@@ -59,9 +56,7 @@ class CartRemoteDataSource extends BaseCartRemoteDataSource {
     if (response.statusCode == 200) {
       return ChangeCartModel.fromJson(response.data);
     } else {
-      throw ServerException(
-        errorMessageModel: ErrorMessageModel.fromJson(response.data),
-      );
+      throw ServerFailure(response.data);
     }
   }
 
@@ -87,9 +82,7 @@ class CartRemoteDataSource extends BaseCartRemoteDataSource {
     if (response.statusCode == 200) {
       return UpdateCartModel.fromJson(response.data['data']['cart']);
     } else {
-      throw ServerException(
-        errorMessageModel: ErrorMessageModel.fromJson(response.data),
-      );
+      throw ServerFailure(response.data);
     }
   }
 }

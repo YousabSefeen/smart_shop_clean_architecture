@@ -27,7 +27,7 @@ class CustomProfileField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isDark = ThemeAndLanguageCubit.object(context).theme == ThemeMode.dark;
+    bool isDark = AppSettingsCubit.object(context).theme == ThemeMode.dark;
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 15.h),
@@ -74,7 +74,7 @@ class CustomProfileField extends StatelessWidget {
   }
 
   _styleBorder(BuildContext context) {
-    bool isDark = ThemeAndLanguageCubit.object(context).theme == ThemeMode.dark;
+    bool isDark = AppSettingsCubit.object(context).theme == ThemeMode.dark;
 
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(20.r),

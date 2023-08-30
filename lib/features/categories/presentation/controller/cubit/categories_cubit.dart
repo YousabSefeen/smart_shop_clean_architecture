@@ -26,7 +26,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
       (l) => emit(
         state.copyWith(
           categoriesState: RequestState.error,
-          categoriesErrorMessage: l.message,
+          categoriesErrorMessage: l.errorMessage,
         ),
       ),
       (r) => emit(
@@ -44,13 +44,17 @@ class CategoriesCubit extends Cubit<CategoriesState> {
     );
 
     result.fold(
-        (l) => emit(state.copyWith(
-              categoryDetailsState: RequestState.error,
-              categoryDetailsErrorMessage: l.message,
-            )),
-        (r) => emit(state.copyWith(
-              categoryDetailsState: RequestState.loaded,
-              categoryDetails: r,
-            )));
+        (l) => emit(
+              state.copyWith(
+                categoryDetailsState: RequestState.error,
+                categoryDetailsErrorMessage: l.errorMessage,
+              ),
+            ),
+        (r) => emit(
+              state.copyWith(
+                categoryDetailsState: RequestState.loaded,
+                categoryDetails: r,
+              ),
+            ));
   }
 }

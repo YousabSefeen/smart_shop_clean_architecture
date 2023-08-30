@@ -27,7 +27,7 @@ class SearchProductsCubit extends Cubit<SearchProductsStates> {
       (l) => emit(
         state.copyWith(
           searchProductsState: RequestState.error,
-          searchProductsErrorMessage: l.message,
+          searchProductsErrorMessage: l.errorMessage,
         ),
       ),
       (r) {

@@ -5,9 +5,9 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:shop_app_clean_architecture/core/utils/app_routers.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 
+import '../../../../../core/common presentation/screens/product_details_screen.dart';
 import '../../../../cart/presentation/ui/widgets/cart_product_change_button.dart';
 import '../../../../favorites/presentation/ui/widgets/favorite_product_change_button.dart';
-import '../../../../../core/common presentation/screens/product_details_screen.dart';
 import '../../../domain/entities/search_products.dart';
 
 class SearchProductWidget extends StatelessWidget {
@@ -101,7 +101,6 @@ class SearchProductWidget extends StatelessWidget {
                                     label: Text(
                                       '${product.price.toInt()} ${'eg'.translate(context)}',
                                       style: textContext.bodyMedium,
-                                      // overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
                                 ],

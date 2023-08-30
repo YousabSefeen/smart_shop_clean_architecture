@@ -25,7 +25,7 @@ class CartProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.sizeOf(context).height;
     final product = cartItems.productItem!;
-    bool isDark = ThemeAndLanguageCubit.object(context).theme == ThemeMode.dark;
+    bool isDark = AppSettingsCubit.object(context).theme == ThemeMode.dark;
     TextTheme textContext = Theme.of(context).textTheme;
 
     return Container(
@@ -68,7 +68,7 @@ class CartProduct extends StatelessWidget {
                     SizedBox(
                       height: constraints.maxHeight * 0.3,
                       child: Row(
-                   //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           DecreaseProductButton(
                             quantity: quantity,
@@ -78,7 +78,7 @@ class CartProduct extends StatelessWidget {
                             quantity: quantity,
                             uniqueId: uniqueId,
                           ),
-                        const Spacer(),
+                          const Spacer(),
                           DeleteProductFromCart(
                             productId: product.id,
                           ),

@@ -9,12 +9,11 @@ class CustomBack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    bool isDark=ThemeAndLanguageCubit.object(context).theme==ThemeMode.dark;
+    bool isDark = AppSettingsCubit.object(context).theme == ThemeMode.dark;
     return IconButton(
       icon: Icon(
         Icons.arrow_back_ios,
-        color:isDark? Colors.white: Colors.black,
+        color: isDark ? Colors.white : Colors.black,
         size: 23.sp,
       ),
       onPressed: () => AppRouters.pop(context: context),

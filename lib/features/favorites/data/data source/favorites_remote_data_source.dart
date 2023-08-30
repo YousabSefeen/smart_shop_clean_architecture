@@ -1,7 +1,5 @@
 import 'package:dio/dio.dart';
-
-import '../../../../core/errors/exception.dart';
-import '../../../../core/network/error_message_model.dart';
+import 'package:shop_app_clean_architecture/core/errors/failure.dart';
 import '../../../../core/utils/api_constants.dart';
 import '../../../../core/utils/global_constants.dart';
 import '../../domain/use cases/change_favorite_use_case.dart';
@@ -31,8 +29,7 @@ class FavoritesRemoteDataSource extends BaseFavoritesRemoteDataSource {
       return List<FavoritesModel>.from((response.data['data']['data'] as List)
           .map((e) => FavoritesModel.fromJson(e)));
     } else {
-      throw ServerException(
-          errorMessageModel: ErrorMessageModel.fromJson(response.data));
+      throw ServerFailure(response.data);
     }
   }
 
@@ -53,8 +50,7 @@ class FavoritesRemoteDataSource extends BaseFavoritesRemoteDataSource {
     if (response.statusCode == 200) {
       return ChangeFavoriteModel.fromJson(response.data);
     } else {
-      throw ServerException(
-          errorMessageModel: ErrorMessageModel.fromJson(response.data));
+      throw ServerFailure(response.data);
     }
   }
 }

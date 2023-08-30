@@ -32,6 +32,6 @@ class HomeServiceLocator {
           getBannersUseCase: sl(),
           getProductsUseCase: sl(),
         ));
-    sl.registerFactory(() => ThemeAndLanguageCubit());
+    sl.registerFactory(() => AppSettingsCubit());
   }
 }

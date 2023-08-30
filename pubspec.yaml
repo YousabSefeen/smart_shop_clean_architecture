@@ -17,7 +17,7 @@ dependencies:
 
   flutter_bloc: ^8.1.0
   bloc: ^8.0.3
-  dio: ^4.0.5
+  dio: ^5.0.2
   flutter_styled_toast: ^2.1.2+1
   shared_preferences: ^2.0.14
   carousel_slider: ^4.1.0
@@ -37,6 +37,8 @@ dependencies:
     sdk: flutter
   connectivity_plus: ^4.0.1
   shimmer: ^3.0.0
+
+
 
 
 dev_dependencies:

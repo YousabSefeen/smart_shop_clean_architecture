@@ -53,7 +53,9 @@ class AuthCubit extends Cubit<AuthStates> {
     result.fold(
       (l) => emit(
         state.copyWith(
-            registerState: RequestState.error, registerErrorMessage: l.message),
+          registerState: RequestState.error,
+          registerErrorMessage: l.errorMessage,
+        ),
       ),
       (r) {
         emit(
@@ -93,7 +95,9 @@ class AuthCubit extends Cubit<AuthStates> {
     result.fold(
       (l) => emit(
         state.copyWith(
-            loginState: RequestState.error, loginErrorMessage: l.message),
+          loginState: RequestState.error,
+          loginErrorMessage: l.errorMessage,
+        ),
       ),
       (r) {
         emit(
@@ -136,7 +140,7 @@ class AuthCubit extends Cubit<AuthStates> {
         (l) => emit(
               state.copyWith(
                 profileState: RequestState.error,
-                profileErrorMessage: l.message,
+                profileErrorMessage: l.errorMessage,
               ),
             ), (r) {
       emit(state.copyWith(
@@ -164,7 +168,7 @@ class AuthCubit extends Cubit<AuthStates> {
     result.fold(
       (l) => emit(state.copyWith(
         updateProfileState: RequestState.error,
-        updateProfileErrorMessage: l.message,
+        updateProfileErrorMessage: l.errorMessage,
       )),
       (r) {
         emit(state.copyWith(

@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 
+import '../../../features/global widgets/custom_indicator.dart';
+import '../../../features/home data/domain/entities/products.dart';
 import '../../utils/global_constants.dart';
 import '../../utils/theme and language/controller/theme_and_language_cubit.dart';
-import '../../../features/global widgets/custom_indicator.dart';
 import '../widgets/show_discount.dart';
-import '../../../features/home data/domain/entities/products.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   static const route = 'ProductDetailsScreen';
@@ -24,8 +24,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   @override
   void didChangeDependencies() {
-    id = ModalRoute.of(context)!.settings.arguments as int;
     super.didChangeDependencies();
+    id = ModalRoute.of(context)!.settings.arguments as int;
+
     product = allProducts.firstWhere((product) => product.id == id);
   }
 
@@ -36,7 +37,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   Widget build(BuildContext context) {
     double height = MediaQuery.sizeOf(context).height;
 
-    bool isDark = ThemeAndLanguageCubit.object(context).theme == ThemeMode.dark;
+    bool isDark = AppSettingsCubit.object(context).theme == ThemeMode.dark;
 
     TextTheme textContext = Theme.of(context).textTheme;
 

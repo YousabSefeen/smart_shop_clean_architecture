@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app_clean_architecture/core/common%20presentation/widgets/custom_error_widget.dart';
 import 'package:shop_app_clean_architecture/core/common%20presentation/widgets/loading_grid_view.dart';
 
 import '../../../../../core/common presentation/widgets/custom_back.dart';
 import '../../../../../core/common presentation/widgets/product_item.dart';
 import '../../../../../core/utils/enums/request_state.dart';
 import '../../../../../core/utils/global_constants.dart';
-import '../../../../global widgets/an_error_widget.dart';
 import '../../../presentation/controller/cubit/categories_cubit.dart';
 import '../../../presentation/controller/states/categories_states.dart';
 
@@ -70,7 +70,13 @@ class CategoryProductsScreen extends StatelessWidget {
                     );
 
                   case RequestState.error:
-                    return const AnErrorWidget();
+                    return SizedBox(
+                      height: 600,
+                      child: CustomErrorWidget(
+                        errorMessage: state.categoryDetailsErrorMessage,
+                        errorCategoryName: extractData['name'] + ' Category',
+                      ),
+                    );
                 }
               },
             ),

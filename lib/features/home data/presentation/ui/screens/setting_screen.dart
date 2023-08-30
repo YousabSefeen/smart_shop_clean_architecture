@@ -4,7 +4,7 @@ import 'package:shop_app_clean_architecture/core/utils/app_routers.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/theme_change_button.dart';
 
-import '../../../../../core/utils/theme and language/components/language _change _button.dart';
+import '../../../../../core/utils/theme and language/components/language_change_button.dart';
 import '../../../../authentication/presentation/controller/cubit/auth_cubit.dart';
 import '../../../../authentication/presentation/ui/screens/profile_screen.dart';
 
@@ -24,7 +24,6 @@ class SettingScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(
-            // vertical: height * 0.02,
             horizontal: width * 0.04,
           ),
           child: LayoutBuilder(

@@ -1,11 +1,15 @@
-abstract class ThemeAndLanguageState {}
+abstract class AppSettingsState {}
 
-class ThemeAndLanguageInitial extends ThemeAndLanguageState {}
+class AppSettingsInitialStates extends AppSettingsState {}
 
-class ChangeThemeState extends ThemeAndLanguageState {}
+class ChangeThemeState extends AppSettingsState {}
 
-class GetThemeState extends ThemeAndLanguageState {}
+class GetThemeState extends AppSettingsState {}
 
-class OnChangeLanguageState extends ThemeAndLanguageState {}
+class OnChangeLanguageState extends AppSettingsState {}
 
-class GetLanguageState extends ThemeAndLanguageState {}
+class GetLanguageState extends AppSettingsState {}
+
+class InternetConnectionState extends AppSettingsState {}
+
+class NoInternetConnectionState extends AppSettingsState {}

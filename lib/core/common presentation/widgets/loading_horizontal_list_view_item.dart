@@ -23,12 +23,12 @@ class LoadingHorizontalListView extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: 20,
             itemBuilder: (context, index) => const Column(
-                children: [
-                   CustomShimmer(height: 80, width: 125),
-                    SizedBox(height: 10),
-                    CustomShimmer(height: 30, width: 125),
-                ],
-              ),
+              children: [
+                CustomShimmer(height: 80, width: 125),
+                SizedBox(height: 10),
+                CustomShimmer(height: 30, width: 125),
+              ],
+            ),
           ),
         ),
       ],

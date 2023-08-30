@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,10 +12,10 @@ import '../../../../features/categories/presentation/controller/cubit/categories
 import '../../../../features/home data/presentation/controller/cubit/home_cubit.dart';
 import '../../global_constants.dart';
 
-class ThemeAndLanguageCubit extends Cubit<ThemeAndLanguageState> {
-  ThemeAndLanguageCubit() : super(ThemeAndLanguageInitial());
+class AppSettingsCubit extends Cubit<AppSettingsState> {
+  AppSettingsCubit() : super(AppSettingsInitialStates());
 
-  static ThemeAndLanguageCubit object(context) => BlocProvider.of(context);
+  static AppSettingsCubit object(context) => BlocProvider.of(context);
   ThemeMode theme = ThemeMode.system;
 
   String textTheme = 'system';
@@ -79,5 +82,28 @@ class ThemeAndLanguageCubit extends Cubit<ThemeAndLanguageState> {
       defaultDirection = TextDirection.rtl;
     }
     emit(GetLanguageState());
+  }
+
+  bool isInternetConnection = false;
+  StreamSubscription? _streamSubscription;
+
+  void checkInternetConnection() {
+    _streamSubscription = Connectivity()
+        .onConnectivityChanged
+        .listen((ConnectivityResult result) {
+      if (result == ConnectivityResult.mobile ||
+          result == ConnectivityResult.wifi) {
+        isInternetConnection = true;
+        emit(InternetConnectionState());
+      } else {
+        emit(NoInternetConnectionState());
+      }
+    });
+  }
+
+  @override
+  Future<void> close() {
+    _streamSubscription!.cancel();
+    return super.close();
   }
 }

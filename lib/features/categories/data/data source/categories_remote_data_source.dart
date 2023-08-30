@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:shop_app_clean_architecture/core/errors/failure.dart';
 
-import '../../../../core/errors/exception.dart';
-import '../../../../core/network/error_message_model.dart';
 import '../../../../core/utils/api_constants.dart';
 import '../../../../core/utils/global_constants.dart';
 import '../../domain/use cases/get_category_details_use_case.dart';
@@ -34,9 +33,7 @@ class CategoriesRemoteDataSource extends BaseCategoriesRemoteDataSource {
             .map((category) => CategoriesModel.fromJson(category)),
       );
     } else {
-      throw ServerException(
-        errorMessageModel: ErrorMessageModel.fromJson(response.data),
-      );
+      throw ServerFailure(response.data);
     }
   }
 
@@ -62,9 +59,7 @@ class CategoriesRemoteDataSource extends BaseCategoriesRemoteDataSource {
           (response.data['data']['data'] as List)
               .map((products) => CategoryDetailsModel.fromJson(products)));
     } else {
-      throw ServerException(
-        errorMessageModel: ErrorMessageModel.fromJson(response.data),
-      );
+      throw ServerFailure(response.data);
     }
   }
 }

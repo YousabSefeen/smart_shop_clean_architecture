@@ -1,4 +1,3 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,11 +6,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app_clean_architecture/core/utils/app_routers.dart';
-import 'package:shop_app_clean_architecture/core/utils/check%20internet/no_internet_connection_screen.dart';
 
 import 'core/services/initialize_services_locators.dart';
 import 'core/utils/bloc_observer.dart';
-import 'core/utils/check internet/check_internet.dart';
 import 'core/utils/global_constants.dart';
 import 'core/utils/theme and language/components/app_localizations.dart';
 import 'core/utils/theme and language/components/app_themes.dart';
@@ -37,6 +34,7 @@ void main() async {
   Bloc.observer = MyBlocObserver();
 
   InitializeServicesLocators().init();
+
   final pref = await SharedPreferences.getInstance();
   token = pref.getString('token') ?? '';
 
@@ -62,68 +60,37 @@ void main() async {
   runApp(MyApp(mainScreen));
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   final Widget mainScreen;
 
   const MyApp(this.mainScreen, {Key? key}) : super(key: key);
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  /// The following code is for checking the internet connection
-  Map _source = {ConnectivityResult.none: false};
-  final MyConnectivity _connectivity = MyConnectivity.instance;
-
-  @override
-  void initState() {
-    super.initState();
-    _connectivity.initialise();
-    _connectivity.myStream.listen((source) {
-      setState(() => _source = source);
-    });
-  }
-
-  @override
-  void dispose() {
-    _connectivity.disposeStream();
-    super.dispose();
-  }
-
-  late Widget home;
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => sl<ThemeAndLanguageCubit>()
+          create: (context) => sl<AppSettingsCubit>()
             ..getThemePref()
-            ..getLanguage(),
+            ..getLanguage()
+            ..checkInternetConnection(),
         ),
         BlocProvider(
-          create: (_) => sl<HomeCubit>()
+          create: (context) => sl<HomeCubit>()
             ..getBanners()
             ..getProducts(),
         ),
-        BlocProvider(create: (_) => sl<CategoriesCubit>()..getCategories()),
+        BlocProvider(
+            create: (context) => sl<CategoriesCubit>()..getCategories()),
         BlocProvider(
           create: (context) => sl<AuthCubit>()..getProfileData(),
         ),
-        BlocProvider(create: (_) => sl<FavoritesCubit>()..getFavorites()),
-        BlocProvider(create: (_) => sl<SearchProductsCubit>()),
-        BlocProvider(create: (_) => sl<CartCubit>()..getCart()),
+        BlocProvider(create: (context) => sl<FavoritesCubit>()..getFavorites()),
+        BlocProvider(create: (context) => sl<SearchProductsCubit>()),
+        BlocProvider(create: (context) => sl<CartCubit>()..getCart()),
       ],
-      child: BlocConsumer<ThemeAndLanguageCubit, ThemeAndLanguageState>(
-        listener: (context, state) {},
+      child: BlocBuilder<AppSettingsCubit, AppSettingsState>(
         builder: (context, state) {
-          // The first step should be to check the internet connection
-          // and depending on this the screen will appear.
-          //Note that this step is useful for making multiple block providers lazy
-          // when there is no internet connection
-          mainScreen();
-
           return ScreenUtilInit(
             designSize: const Size(360, 690),
             minTextAdapt: true,
@@ -152,27 +119,13 @@ class _MyAppState extends State<MyApp> {
               },
               theme: AppThemes.light,
               darkTheme: AppThemes.dark,
-              themeMode: ThemeAndLanguageCubit.object(context).theme,
-              home: home,
+              themeMode: AppSettingsCubit.object(context).theme,
+              home: mainScreen,
               routes: AppRouters.routes,
             ),
           );
         },
       ),
     );
-  }
-
-  void mainScreen() {
-    switch (_source.keys.toList()[0]) {
-      case ConnectivityResult.mobile:
-        home = widget.mainScreen;
-        break;
-      case ConnectivityResult.wifi:
-        home = widget.mainScreen;
-        break;
-      case ConnectivityResult.none:
-      default:
-        home = const NoInternetConnectionScreen();
-    }
   }
 }

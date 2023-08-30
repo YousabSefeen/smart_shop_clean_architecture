@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shop_app_clean_architecture/core/common%20presentation/widgets/custom_error_widget.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 
 import '../../../../../core/utils/enums/request_state.dart';
 import '../../../../../core/utils/theme and language/controller/theme_and_language_cubit.dart';
-import '../../../../global widgets/an_error_widget.dart';
 import '../../../../global widgets/loading_widget.dart';
 import '../../controller/cubit/cart_cubit.dart';
 import '../../controller/states/cart_states.dart';
@@ -20,7 +20,7 @@ class CartScreen extends StatelessWidget {
     double height = MediaQuery.sizeOf(context).height;
     double width = MediaQuery.sizeOf(context).width;
     TextTheme textContext = Theme.of(context).textTheme;
-    bool isDark = ThemeAndLanguageCubit.object(context).theme == ThemeMode.dark;
+    bool isDark = AppSettingsCubit.object(context).theme == ThemeMode.dark;
     return Scaffold(
       appBar: AppBar(
         title: Text('cart'.translate(context)),
@@ -28,7 +28,7 @@ class CartScreen extends StatelessWidget {
       body: BlocConsumer<CartCubit, CartStates>(
         listener: (context, state) {},
         builder: (context, state) {
-          switch (state.cartRequestState) {
+          switch (state.cartState) {
             case RequestState.loading:
               return const LoadingWidgets();
             case RequestState.loaded:
@@ -108,7 +108,12 @@ class CartScreen extends StatelessWidget {
                 ],
               );
             case RequestState.error:
-              return const AnErrorWidget();
+              return Center(
+                child: CustomErrorWidget(
+                  errorMessage: state.cartErrorMessage,
+                  errorCategoryName: 'cart'.translate(context),
+                ),
+              );
           }
         },
       ),

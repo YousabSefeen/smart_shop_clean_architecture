@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 
-import '../../../../core/errors/exception.dart';
 import '../../../../core/errors/failure.dart';
 import '../../domain/base cart repository/base_cart_repository.dart';
 import '../../domain/entities/cart.dart';
@@ -17,40 +17,45 @@ class CartRepository extends BaseCartRepository {
 
   @override
   Future<Either<Failure, Cart>> getCart() async {
-    final result = await baseCartRemoteDataSource.getCart();
     try {
+      final result = await baseCartRemoteDataSource.getCart();
       return Right(result);
-    } on ServerException catch (failure) {
-      return Left(ServerFailure(
-        message: failure.errorMessageModel.message,
-      ));
+    } catch (error) {
+      if (error is DioException) {
+        return Left(ServerFailure.fromDioException(error: error));
+      } else {
+        return Left(ServerFailure(error.toString()));
+      }
     }
   }
 
   @override
   Future<Either<Failure, ChangeCart>> changeCart(
       ChangeCartParameters parameters) async {
-    final result = await baseCartRemoteDataSource.changeCart(parameters);
-
     try {
+      final result = await baseCartRemoteDataSource.changeCart(parameters);
       return Right(result);
-    } on ServerException catch (failure) {
-      return Left(ServerFailure(
-        message: failure.errorMessageModel.message,
-      ));
+    } catch (error) {
+      if (error is DioException) {
+        return Left(ServerFailure.fromDioException(error: error));
+      } else {
+        return Left(ServerFailure(error.toString()));
+      }
     }
   }
 
   @override
   Future<Either<Failure, UpdateCart>> updateCart(
       UpdateCartParameters parameters) async {
-    final result = await baseCartRemoteDataSource.updateCar(parameters);
     try {
+      final result = await baseCartRemoteDataSource.updateCar(parameters);
       return Right(result);
-    } on ServerException catch (failure) {
-      return Left(ServerFailure(
-        message: failure.errorMessageModel.message,
-      ));
+    } catch (error) {
+      if (error is DioException) {
+        return Left(ServerFailure.fromDioException(error: error));
+      } else {
+        return Left(ServerFailure(error.toString()));
+      }
     }
   }
 }

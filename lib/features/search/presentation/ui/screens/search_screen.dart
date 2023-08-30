@@ -5,7 +5,6 @@ import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/co
 
 import '../../../../../core/utils/enums/request_state.dart';
 import '../../../../../core/utils/global_constants.dart';
-import '../../../../global widgets/an_error_widget.dart';
 import '../../../../global widgets/loading_widget.dart';
 import '../../controller/cubit/search_products_cubit.dart';
 import '../../controller/states/search_products_states.dart';
@@ -26,8 +25,8 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double height=MediaQuery.sizeOf(context).height;
-    double width=MediaQuery.sizeOf(context).width;
+    double height = MediaQuery.sizeOf(context).height;
+    double width = MediaQuery.sizeOf(context).width;
     final searchCubit = SearchProductsCubit.object(context);
     return BlocConsumer<SearchProductsCubit, SearchProductsStates>(
       listener: (context, state) {},
@@ -63,7 +62,15 @@ class _SearchScreenState extends State<SearchScreen> {
                       },
                       controller: _controller,
                     ),
-                    BlocBuilder<SearchProductsCubit, SearchProductsStates>(
+                    BlocConsumer<SearchProductsCubit, SearchProductsStates>(
+                        listener: (context, state) {
+                          if (state.searchProductsState == RequestState.error) {
+                            return customDialog(
+                              context: context,
+                              message: state.searchProductsErrorMessage,
+                            );
+                          }
+                        },
                         buildWhen: (previous, current) =>
                             previous.searchProductsState !=
                             current.searchProductsState,
@@ -100,7 +107,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 ),
                               );
                             case RequestState.error:
-                              return const AnErrorWidget();
+                              return const SizedBox();
                           }
                         }),
                   ],

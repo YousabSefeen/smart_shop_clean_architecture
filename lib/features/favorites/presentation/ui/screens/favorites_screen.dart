@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 
+import '../../../../../core/common presentation/widgets/custom_error_widget.dart';
 import '../../../../../core/utils/enums/request_state.dart';
-
-import '../../../../global widgets/an_error_widget.dart';
 import '../../../../global widgets/loading_widget.dart';
 import '../../../presentation/controller/cubit/favorites_cubit.dart';
 import '../../../presentation/controller/states/favorites_state.dart';
@@ -45,7 +44,12 @@ class FavoritesScreen extends StatelessWidget {
                         },
                       );
               case RequestState.error:
-                return const AnErrorWidget();
+                return Center(
+                  child: CustomErrorWidget(
+                    errorMessage: state.favoritesErrorMessage,
+                    errorCategoryName: 'favorites'.translate(context),
+                  ),
+                );
             }
           },
         ),

@@ -28,12 +28,12 @@ class CartCubit extends Cubit<CartStates> {
     final result = await getCartUseCase(const NoParameters());
     result.fold(
         (l) => emit(state.copyWith(
-              cartErrorMessage: l.message,
-              cartRequestState: RequestState.error,
+              cartErrorMessage: l.errorMessage,
+              cartState: RequestState.error,
             )),
         (r) => emit(state.copyWith(
               cart: r,
-              cartRequestState: RequestState.loaded,
+              cartState: RequestState.loaded,
             )));
   }
 
@@ -48,7 +48,7 @@ class CartCubit extends Cubit<CartStates> {
     result.fold(
       (l) => emit(state.copyWith(
         changeCartState: RequestState.error,
-        changeCartErrorMessage: l.message,
+        changeCartErrorMessage: l.errorMessage,
       )),
       (r) {
         emit(
@@ -77,7 +77,7 @@ class CartCubit extends Cubit<CartStates> {
     result.fold(
       (l) => emit(state.copyWith(
         updateCartState: RequestState.error,
-        updateCartErrorMessage: l.message,
+        updateCartErrorMessage: l.errorMessage,
       )),
       (r) {
         emit(

@@ -7,6 +7,7 @@ import '../../features/categories/presentation/ui/screens/categories_screen.dart
 import '../../features/categories/presentation/ui/screens/category_products_screen.dart';
 import '../../features/home data/presentation/ui/screens/bottom_nav_screen.dart';
 import '../../features/home data/presentation/ui/screens/home_screen.dart';
+import '../common presentation/screens/no_internet_connection_screen.dart';
 import '../common presentation/screens/product_details_screen.dart';
 
 abstract class AppRouters {
@@ -19,6 +20,8 @@ abstract class AppRouters {
     CategoriesScreen.route: (context) => const CategoriesScreen(),
     CategoryProductsScreen.route: (context) => const CategoryProductsScreen(),
     ProfileScreen.route: (context) => const ProfileScreen(),
+    NoInternetConnectionScreen.route: (context) =>
+        const NoInternetConnectionScreen(),
   };
 
   static void go({

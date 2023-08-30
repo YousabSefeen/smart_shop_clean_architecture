@@ -33,7 +33,6 @@ class LanguageChangeButton extends StatelessWidget {
         dropdownColor: Theme.of(context).scaffoldBackgroundColor,
         borderRadius: BorderRadius.circular(20.r),
         style: Theme.of(context).textTheme.titleSmall!.copyWith(
-              //    color: theme.scaffoldBackgroundColor,
               letterSpacing: 1.5,
               fontSize: 18.sp,
             ),
@@ -58,7 +57,7 @@ class LanguageChangeButton extends StatelessWidget {
           ),
         ],
         onChanged: (newLanguage) {
-          ThemeAndLanguageCubit.object(context).onChangeLanguage(
+          AppSettingsCubit.object(context).onChangeLanguage(
             newLanguage!,
             context,
           );

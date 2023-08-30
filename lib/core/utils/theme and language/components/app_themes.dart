@@ -31,12 +31,10 @@ class AppThemes {
         backgroundColor: MaterialStateProperty.all(
           const Color(0xffe85d04),
         ),
-        padding: MaterialStateProperty.all(
-            EdgeInsets.symmetric(vertical: 7.h, horizontal: 10.w)),
-
-        ///The text style does not respond when a value is assigned to it
-
-        //textStyle: ,
+        padding: MaterialStateProperty.all(EdgeInsets.symmetric(
+          vertical: 7.h,
+          horizontal: 10.w,
+        )),
       ),
     ),
     chipTheme: const ChipThemeData(

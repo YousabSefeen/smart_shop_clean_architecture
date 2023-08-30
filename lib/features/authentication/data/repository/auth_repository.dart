@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 
-import '../../../../core/errors/exception.dart';
 import '../../../../core/errors/failure.dart';
 import '../../domain/base auth repository/base_auth_repository.dart';
 import '../../domain/entities/auth.dart';
@@ -14,55 +14,61 @@ class AuthRepository extends BaseAuthRepository {
 
   @override
   Future<Either<Failure, Auth>> register(AuthParameters parameters) async {
-    final result = await baseAuthRemoteDataSource.register(parameters);
-
     try {
+      final result = await baseAuthRemoteDataSource.register(parameters);
+
       return Right(result);
-    } on ServerException catch (failure) {
-      return Left(ServerFailure(
-        message: failure.errorMessageModel.message,
-      ));
+    } catch (error) {
+      if (error is DioException) {
+        return Left(ServerFailure.fromDioException(error: error));
+      } else {
+        return Left(ServerFailure(error.toString()));
+      }
     }
   }
 
   @override
   Future<Either<Failure, Auth>> login(AuthParameters parameters) async {
-    final result = await baseAuthRemoteDataSource.login(parameters);
-
     try {
+      final result = await baseAuthRemoteDataSource.login(parameters);
+
       return right(result);
-    } on ServerException catch (failure) {
-      return Left(ServerFailure(message: failure.errorMessageModel.message));
+    } catch (error) {
+      if (error is DioException) {
+        return Left(ServerFailure.fromDioException(error: error));
+      } else {
+        return Left(ServerFailure(error.toString()));
+      }
     }
   }
 
   @override
   Future<Either<Failure, Auth>> getProfile() async {
-    final result = await baseAuthRemoteDataSource.getProfile();
-
     try {
+      final result = await baseAuthRemoteDataSource.getProfile();
+
       return Right(result);
-    } on ServerException catch (failure) {
-      return Left(
-        ServerFailure(
-          message: failure.errorMessageModel.message,
-        ),
-      );
+    } catch (error) {
+      if (error is DioException) {
+        return Left(ServerFailure.fromDioException(error: error));
+      } else {
+        return Left(ServerFailure(error.toString()));
+      }
     }
   }
 
   @override
   Future<Either<Failure, Auth>> updateProfile(AuthParameters parameters) async {
-    final result = await baseAuthRemoteDataSource.updateProfile(parameters);
-
     try {
+      final result = await baseAuthRemoteDataSource.updateProfile(parameters);
+
       return Right(result);
-    } on ServerException catch (failure) {
-      return Left(
-        ServerFailure(
-          message: failure.errorMessageModel.message,
-        ),
-      );
+    } catch (error) {
+      if (error is DioException) {
+        return Left(ServerFailure.fromDioException(error: error));
+      } else {
+        return Left(ServerFailure(error.toString()));
+      }
     }
   }
 }

@@ -17,7 +17,7 @@ class IncreaseProductButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isDark = ThemeAndLanguageCubit.object(context).theme == ThemeMode.dark;
+    bool isDark = AppSettingsCubit.object(context).theme == ThemeMode.dark;
     return CircleAvatar(
       radius: 15.r,
       backgroundColor: isDark ? const Color(0xff52796f) : Colors.black,

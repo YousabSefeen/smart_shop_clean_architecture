@@ -1,7 +1,5 @@
 import 'package:dio/dio.dart';
-
-import '../../../../core/errors/exception.dart';
-import '../../../../core/network/error_message_model.dart';
+import 'package:shop_app_clean_architecture/core/errors/failure.dart';
 import '../../../../core/utils/api_constants.dart';
 import '../../../../core/utils/global_constants.dart';
 import '../models/banners_model.dart';
@@ -29,9 +27,7 @@ class HomeRemoteDataSource extends BaseHomeRemoteDataSource {
         (banner) => BannersModel.fromJson(banner),
       ));
     } else {
-      throw ServerException(
-        errorMessageModel: ErrorMessageModel.fromJson(response.data),
-      );
+      throw ServerFailure(response.data);
     }
   }
 
@@ -56,9 +52,7 @@ class HomeRemoteDataSource extends BaseHomeRemoteDataSource {
         ),
       );
     } else {
-      throw ServerException(
-        errorMessageModel: ErrorMessageModel.fromJson(response.data),
-      );
+      throw ServerFailure(response.data);
     }
   }
 }

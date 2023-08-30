@@ -27,7 +27,7 @@ class FavoritesCubit extends Cubit<FavoritesState> {
     result.fold(
         (l) => emit(state.copyWith(
               favoritesState: RequestState.error,
-              favoritesErrorMessage: l.message,
+              favoritesErrorMessage: l.errorMessage,
             )),
         (r) => emit(state.copyWith(
               favorites: r,
@@ -46,7 +46,7 @@ class FavoritesCubit extends Cubit<FavoritesState> {
         favorites[id] = !favorites[id]!;
         emit(state.copyWith(
           changeFavoriteState: RequestState.error,
-          changeFavoriteErrorMessage: l.message,
+          changeFavoriteErrorMessage: l.errorMessage,
         ));
         customSnackBar(
           context: context,
