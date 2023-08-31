@@ -40,6 +40,16 @@ abstract class AppRouters {
       Navigator.of(context, rootNavigator: true)
           .pushReplacementNamed(route, arguments: arguments);
 
+  static void goAndRemoveUntil({
+    required BuildContext context,
+    required String route,
+    Object? arguments,
+  }) =>
+      Navigator.of(context, rootNavigator: true).pushNamedAndRemoveUntil(
+        route,
+        (Route<dynamic> route) => false,
+      );
+
   static pop({
     required BuildContext context,
   }) =>

@@ -92,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 },
                                 obscureText: !_show,
                                 suffixIcon: _hideAndShowPasswordButton(),
-                                onFieldSubmitted: (_) => _submit(context),
+                                onFieldSubmitted: (_)=> _submit(context),
                               ),
                               SizedBox(height: 13.h),
                               _isLogin

@@ -7,7 +7,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/controller/theme_and_language_states.dart';
-import 'package:shop_app_clean_architecture/features/home%20data/presentation/controller/cubit/home_cubit.dart';
 import 'package:shop_app_clean_architecture/features/home%20data/presentation/ui/screens/setting_screen.dart';
 
 import '../../../../../core/common presentation/screens/no_internet_connection_screen.dart';
@@ -15,7 +14,6 @@ import '../../../../../core/utils/app_routers.dart';
 import '../../../../../core/utils/global_constants.dart';
 import '../../../../../core/utils/theme and language/controller/theme_and_language_cubit.dart';
 import '../../../../cart/presentation/ui/screens/cart_screen.dart';
-import '../../../../categories/presentation/controller/cubit/categories_cubit.dart';
 import '../../../../favorites/presentation/ui/screens/favorites_screen.dart';
 import '../../../../search/presentation/ui/screens/search_screen.dart';
 import 'home_screen.dart';
@@ -41,17 +39,10 @@ class BottomNavigationScreen extends StatelessWidget {
           );
           Timer(
             const Duration(seconds: 4),
-            () => AppRouters.go(
+            () => AppRouters.goAndRemoveUntil(
               context: context,
               route: NoInternetConnectionScreen.route,
             ),
-          );
-        } else if (state is InternetConnectionState) {
-          AppRouters.go(context: context, route: '/');
-          _refreshData(context);
-          customDialog(
-            context: context,
-            message: 'connected'.translate(context),
           );
         }
       },
@@ -96,13 +87,6 @@ class BottomNavigationScreen extends StatelessWidget {
               );
       },
     );
-  }
-
-  void _refreshData(BuildContext context) {
-    HomeCubit.object(context)
-      ..getProducts()
-      ..getBanners();
-    CategoriesCubit.object(context).getCategories();
   }
 
   List<Widget> _buildScreens() {

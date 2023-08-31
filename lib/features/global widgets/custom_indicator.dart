@@ -27,7 +27,8 @@ class CustomIndicator extends StatelessWidget {
     int i,
     BuildContext context,
   ) {
-    final isDark = AppSettingsCubit.object(context).theme == ThemeMode.dark;
+    final isDark =
+        AppSettingsCubit.object(context).theme == ThemeMode.dark;
     return index == i
         ? Icon(
             Icons.star,

@@ -13,7 +13,7 @@ class CustomLoginField extends StatelessWidget {
   final TextInputType textInputType;
 
   final String? Function(String?)? validator;
-  final void Function(String)? onFieldSubmitted;
+ final  void Function(String)?   onFieldSubmitted;
 
   const CustomLoginField({
     this.controller,
