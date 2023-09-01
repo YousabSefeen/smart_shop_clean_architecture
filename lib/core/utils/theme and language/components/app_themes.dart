@@ -160,7 +160,7 @@ class AppThemes {
       ),
     ),
     dividerTheme: const DividerThemeData(
-      color: Colors.amber,
+      color: Colors.blue,
       thickness: 2,
     ),
     textTheme: TextTheme(

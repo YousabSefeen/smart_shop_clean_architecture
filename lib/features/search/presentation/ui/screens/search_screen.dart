@@ -1,11 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shop_app_clean_architecture/core/common%20presentation/widgets/custom_error_widget.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 
+import '../../../../../core/common presentation/screens/empty_screen.dart';
+import '../../../../../core/common presentation/widgets/loading_grid_view.dart';
 import '../../../../../core/utils/enums/request_state.dart';
 import '../../../../../core/utils/global_constants.dart';
-import '../../../../global widgets/loading_widget.dart';
 import '../../controller/cubit/search_products_cubit.dart';
 import '../../controller/states/search_products_states.dart';
 import '../widgets/custom_search_field.dart';
@@ -28,58 +31,62 @@ class _SearchScreenState extends State<SearchScreen> {
     double height = MediaQuery.sizeOf(context).height;
     double width = MediaQuery.sizeOf(context).width;
     final searchCubit = SearchProductsCubit.object(context);
-    return BlocConsumer<SearchProductsCubit, SearchProductsStates>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text('search'.translate(context)),
-          ),
-          body: SafeArea(
-            child: Form(
-              key: _globalKey,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(height: height * 0.05),
-                    CustomSearchField(
-                      onPressedSuffixIcon: () {
-                        _controller.clear();
-                        searchCubit.searchProducts.clear();
-                        setState(() {});
-                      },
-                      onFieldSubmitted: (valueSearch) {
-                        if (valueSearch == '') {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('search'.translate(context)),
+      ),
+      body: SafeArea(
+        child: Form(
+          key: _globalKey,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: height * 0.05),
+                CustomSearchField(
+                  onPressedSuffixIcon: () {
+                    _controller.clear();
+                    searchCubit.searchProducts.clear();
+                    setState(() {});
+                  },
+                  onFieldSubmitted: (valueSearch) async {
+                    if (valueSearch == '') {
+                      customToast(
+                        backgroundColor: Colors.red,
+                        context: context,
+                        message: 'searchProduct'.translate(context),
+                      );
+                    } else {
+                      await searchCubit.getSearchProducts(
+                        nameProduct: valueSearch.trim(),
+                      );
+
+                      if (searchCubit.searchProducts.isEmpty) {
+                        if (context.mounted) {
                           customSnackBar(
                             context: context,
-                            message: 'Please enter the value to search for',
+                            message: 'productNotFount'.translate(context),
                           );
-                        } else {
-                          searchCubit.getSearchProducts(
-                              nameProduct: valueSearch.trim());
-                          FocusScope.of(context).unfocus();
                         }
-                      },
-                      controller: _controller,
-                    ),
-                    BlocConsumer<SearchProductsCubit, SearchProductsStates>(
-                        listener: (context, state) {
-                          if (state.searchProductsState == RequestState.error) {
-                            return customDialog(
-                              context: context,
-                              message: state.searchProductsErrorMessage,
-                            );
-                          }
-                        },
-                        buildWhen: (previous, current) =>
-                            previous.searchProductsState !=
-                            current.searchProductsState,
-                        builder: (context, state) {
-                          switch (state.searchProductsState) {
-                            case RequestState.loading:
-                              return const LoadingWidgets();
-                            case RequestState.loaded:
-                              return GridView.builder(
+                      }
+                    }
+                  },
+                  controller: _controller,
+                ),
+                BlocBuilder<SearchProductsCubit, SearchProductsStates>(
+                  buildWhen: (previous, current) =>
+                      previous.searchProductsState !=
+                      current.searchProductsState,
+                  builder: (context, state) {
+                    switch (state.searchProductsState) {
+                      case RequestState.loading:
+                        return const LoadingGridView();
+                      case RequestState.loaded:
+                        return searchCubit.searchProducts.isEmpty
+                            ? EmptyScreen(
+                                text: 'emptySearchDes'.translate(context),
+                                icon: CupertinoIcons.search,
+                              )
+                            : GridView.builder(
                                 shrinkWrap: true,
 
                                 /// It is very important that someone else can get me an error
@@ -106,17 +113,20 @@ class _SearchScreenState extends State<SearchScreen> {
                                       searchCubit.searchProducts.length,
                                 ),
                               );
-                            case RequestState.error:
-                              return const SizedBox();
-                          }
-                        }),
-                  ],
+
+                      case RequestState.error:
+                        return CustomErrorWidget(
+                          errorMessage: state.searchProductsErrorMessage,
+                          errorCategoryName: 'Products Search',
+                        );
+                    }
+                  },
                 ),
-              ),
+              ],
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
