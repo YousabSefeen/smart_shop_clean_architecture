@@ -44,6 +44,6 @@
   "logout": "LOGOUT",
   "connected": "Internet connection",
   "internetConnected": "Internet connection has been reestablished. Please wait while the data loads.",
-  "notInternetConnected": "Could Not Connected",
+  "alertNoInternet": "Could Not Connected",
   "retry": "Retry"
 }

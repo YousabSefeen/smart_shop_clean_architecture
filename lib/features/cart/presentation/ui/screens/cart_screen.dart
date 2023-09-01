@@ -69,21 +69,9 @@ class CartScreen extends StatelessWidget {
                       )
                     ],
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: isDark ? Colors.amber : const Color(0xff003566),
-                      borderRadius: BorderRadius.circular(20.r),
-                    ),
-                    margin: EdgeInsets.symmetric(
-                      vertical: height * 0.02,
-                      horizontal: width * 0.2,
-                    ),
-                    height: 3.h,
-                    width: double.infinity,
-                  ),
+                  _customDivider(context, height, width),
                   state.cart!.cartItems!.isEmpty
                       ? EmptyScreen(
-
                           text: 'emptyCartDes'.translate(context),
                           icon: Icons.add_shopping_cart_outlined,
                         )
@@ -121,6 +109,21 @@ class CartScreen extends StatelessWidget {
           }
         },
       ),
+    );
+  }
+
+  Container _customDivider(BuildContext context, double height, double width) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).dividerTheme.color,
+        borderRadius: BorderRadius.circular(20.r),
+      ),
+      margin: EdgeInsets.symmetric(
+        vertical: height * 0.02,
+        horizontal: width * 0.2,
+      ),
+      height: 3.h,
+      width: double.infinity,
     );
   }
 }

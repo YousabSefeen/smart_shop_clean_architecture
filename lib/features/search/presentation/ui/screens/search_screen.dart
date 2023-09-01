@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shop_app_clean_architecture/core/common%20presentation/widgets/custom_app_alerts.dart';
 import 'package:shop_app_clean_architecture/core/common%20presentation/widgets/custom_error_widget.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 
 import '../../../../../core/common presentation/screens/empty_screen.dart';
 import '../../../../../core/common presentation/widgets/loading_grid_view.dart';
 import '../../../../../core/utils/enums/request_state.dart';
-import '../../../../../core/utils/global_constants.dart';
 import '../../controller/cubit/search_products_cubit.dart';
 import '../../controller/states/search_products_states.dart';
 import '../widgets/custom_search_field.dart';
@@ -50,7 +50,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   },
                   onFieldSubmitted: (valueSearch) async {
                     if (valueSearch == '') {
-                      customToast(
+                      CustomAppAlerts.customToast(
                         backgroundColor: Colors.red,
                         context: context,
                         message: 'searchProduct'.translate(context),
@@ -62,7 +62,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
                       if (searchCubit.searchProducts.isEmpty) {
                         if (context.mounted) {
-                          customSnackBar(
+                          CustomAppAlerts.customSnackBar(
                             context: context,
                             message: 'productNotFount'.translate(context),
                           );

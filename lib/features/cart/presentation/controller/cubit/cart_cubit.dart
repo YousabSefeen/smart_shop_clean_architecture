@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/base  use case/base_use_case.dart';
+import '../../../../../core/common presentation/widgets/custom_app_alerts.dart';
 import '../../../../../core/utils/enums/request_state.dart';
 import '../../../../../core/utils/global_constants.dart';
 import '../../../domain/use cases/change_cart_use_case.dart';
@@ -57,7 +58,7 @@ class CartCubit extends Cubit<CartStates> {
             changeCartState: RequestState.loaded,
           ),
         );
-        customSnackBar(
+        CustomAppAlerts.customSnackBar(
           context: context,
           message: state.changeCart!.message,
         );

@@ -10,6 +10,7 @@ import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/co
 import 'package:shop_app_clean_architecture/features/home%20data/presentation/ui/screens/setting_screen.dart';
 
 import '../../../../../core/common presentation/screens/no_internet_connection_screen.dart';
+import '../../../../../core/common presentation/widgets/custom_app_alerts.dart';
 import '../../../../../core/utils/app_routers.dart';
 import '../../../../../core/utils/global_constants.dart';
 import '../../../../../core/utils/theme and language/controller/theme_and_language_cubit.dart';
@@ -33,9 +34,9 @@ class BottomNavigationScreen extends StatelessWidget {
     return BlocConsumer<AppSettingsCubit, AppSettingsState>(
       listener: (context, state) {
         if (state is NoInternetConnectionState) {
-          customSnackBarToCheckInternet(
+          CustomAppAlerts.alertNoInternet(
             context: context,
-            message: 'notInternetConnected'.translate(context),
+            message: 'alertNoInternet'.translate(context),
           );
           Timer(
             const Duration(seconds: 4),

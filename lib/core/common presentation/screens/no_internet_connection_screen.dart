@@ -9,7 +9,7 @@ import '../../../features/categories/presentation/controller/cubit/categories_cu
 import '../../../features/home data/presentation/controller/cubit/home_cubit.dart';
 import '../../../features/home data/presentation/ui/screens/bottom_nav_screen.dart';
 import '../../utils/app_routers.dart';
-import '../../utils/global_constants.dart';
+import '../widgets/custom_app_alerts.dart';
 
 class NoInternetConnectionScreen extends StatelessWidget {
   static const route = 'NoInternetConnectionScreen';
@@ -20,7 +20,7 @@ class NoInternetConnectionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AppSettingsCubit, AppSettingsState>(
       listener: (context, state) {
-        customDialog(
+        CustomAppAlerts.customDialog(
           context: context,
           message: 'connected'.translate(context),
         );

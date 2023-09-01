@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/utils/global_constants.dart';
+
+import '../../../../../core/common presentation/widgets/custom_app_alerts.dart';
 import '../../../../../core/utils/theme and language/controller/theme_and_language_cubit.dart';
 import '../../controller/cubit/cart_cubit.dart';
 
@@ -28,7 +29,7 @@ class IncreaseProductButton extends StatelessWidget {
             quantity: quantity + 1,
             productId: uniqueId,
           );
-          customToast(
+          CustomAppAlerts.customToast(
             context: context,
             message: 'The quantity has been\n increased by one',
             backgroundColor: Colors.green,

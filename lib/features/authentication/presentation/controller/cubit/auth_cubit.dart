@@ -8,6 +8,7 @@ import 'package:shop_app_clean_architecture/core/utils/app_routers.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 
 import '../../../../../core/base  use case/base_use_case.dart';
+import '../../../../../core/common presentation/widgets/custom_app_alerts.dart';
 import '../../../../../core/utils/enums/request_state.dart';
 import '../../../../../core/utils/global_constants.dart';
 import '../../../../cart/presentation/controller/cubit/cart_cubit.dart';
@@ -66,14 +67,14 @@ class AuthCubit extends Cubit<AuthStates> {
           token = r.data!.token;
           pref.setString('token', token);
           AppRouters.go(context: context, route: BottomNavigationScreen.route);
-          customToast(
+          CustomAppAlerts.customToast(
             context: context,
             message: state.register!.message!,
             backgroundColor: Colors.green,
           );
           getProfileData();
         } else {
-          customToast(
+          CustomAppAlerts.customToast(
             context: context,
             message: state.register!.message!,
             backgroundColor: Colors.red,
@@ -109,7 +110,7 @@ class AuthCubit extends Cubit<AuthStates> {
           pref.setString('token', token);
 
           AppRouters.go(context: context, route: BottomNavigationScreen.route);
-          customToast(
+          CustomAppAlerts.customToast(
             context: context,
             message: state.login!.message!,
             backgroundColor: Colors.green,
@@ -119,7 +120,7 @@ class AuthCubit extends Cubit<AuthStates> {
           FavoritesCubit.object(context).getFavorites();
           CartCubit.object(context).getCart();
         } else {
-          customToast(
+          CustomAppAlerts.customToast(
             context: context,
             message: state.login!.message!,
             backgroundColor: Colors.red,
@@ -175,7 +176,7 @@ class AuthCubit extends Cubit<AuthStates> {
           updateProfile: r,
           updateProfileState: RequestState.loaded,
         ));
-        customToast(
+        CustomAppAlerts.customToast(
           context: context,
           message: 'updateDataMessage'.translate(context),
           backgroundColor: Colors.green,

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/base  use case/base_use_case.dart';
+import '../../../../../core/common presentation/widgets/custom_app_alerts.dart';
 import '../../../../../core/utils/enums/request_state.dart';
 import '../../../../../core/utils/global_constants.dart';
 import '../../../domain/use cases/change_favorite_use_case.dart';
@@ -48,7 +49,7 @@ class FavoritesCubit extends Cubit<FavoritesState> {
           changeFavoriteState: RequestState.error,
           changeFavoriteErrorMessage: l.errorMessage,
         ));
-        customSnackBar(
+        CustomAppAlerts.customSnackBar(
           context: context,
           message: state.changeFavorite!.message,
         );
@@ -58,7 +59,7 @@ class FavoritesCubit extends Cubit<FavoritesState> {
           changeFavorite: r,
           changeFavoriteState: RequestState.loaded,
         ));
-        customSnackBar(
+        CustomAppAlerts.customSnackBar(
           context: context,
           message: state.changeFavorite!.message,
         );
