@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app_clean_architecture/core/common%20presentation/screens/empty_screen.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 
 import '../../../../../core/common presentation/widgets/custom_error_widget.dart';
@@ -7,7 +8,6 @@ import '../../../../../core/utils/enums/request_state.dart';
 import '../../../../global widgets/loading_widget.dart';
 import '../../../presentation/controller/cubit/favorites_cubit.dart';
 import '../../../presentation/controller/states/favorites_state.dart';
-import '../widgets/empty_favorite.dart';
 import '../widgets/favorite_product.dart';
 
 class FavoritesScreen extends StatelessWidget {
@@ -28,7 +28,11 @@ class FavoritesScreen extends StatelessWidget {
                 return const LoadingWidgets();
               case RequestState.loaded:
                 return state.favorites.isEmpty
-                    ? const EmptyFavorites()
+                    ? EmptyScreen(
+                        topPadding: 0,
+                        text: 'emptyFavoriteDes'.translate(context),
+                        icon: Icons.star_border_outlined,
+                      )
                     : ListView.builder(
                         reverse: true,
                         shrinkWrap: true,

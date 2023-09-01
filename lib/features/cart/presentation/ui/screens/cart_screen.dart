@@ -4,13 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_clean_architecture/core/common%20presentation/widgets/custom_error_widget.dart';
 import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 
+import '../../../../../core/common presentation/screens/empty_screen.dart';
 import '../../../../../core/utils/enums/request_state.dart';
 import '../../../../../core/utils/theme and language/controller/theme_and_language_cubit.dart';
 import '../../../../global widgets/loading_widget.dart';
 import '../../controller/cubit/cart_cubit.dart';
 import '../../controller/states/cart_states.dart';
 import '../widgets/cart_product.dart';
-import '../widgets/empty_cart.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -82,7 +82,11 @@ class CartScreen extends StatelessWidget {
                     width: double.infinity,
                   ),
                   state.cart!.cartItems!.isEmpty
-                      ? const EmptyCart()
+                      ? EmptyScreen(
+
+                          text: 'emptyCartDes'.translate(context),
+                          icon: Icons.add_shopping_cart_outlined,
+                        )
                       : Expanded(
                           child: ListView.builder(
                               shrinkWrap: true,

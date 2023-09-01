@@ -15,7 +15,7 @@ class LoadingGridView extends StatelessWidget {
 
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 200,
-        childAspectRatio: 3 / 5,
+        childAspectRatio: 3 / 4,
         mainAxisSpacing: 10,
         crossAxisSpacing: 5,
       ),
