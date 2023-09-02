@@ -19,7 +19,7 @@ class _CustomErrorWidgetState extends State<CustomErrorWidget> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection:TextDirection.ltr ,
+      textDirection: TextDirection.ltr,
       child: Container(
         padding: const EdgeInsets.all(20),
         margin: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),

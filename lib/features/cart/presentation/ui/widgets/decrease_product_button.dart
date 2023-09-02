@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 
 import '../../../../../core/common presentation/widgets/custom_app_alerts.dart';
 import '../../../../../core/utils/theme and language/controller/theme_and_language_cubit.dart';
@@ -28,7 +29,7 @@ class DecreaseProductButton extends StatelessWidget {
             if (quantity == 0) {
               CustomAppAlerts.customToast(
                 context: context,
-                message: 'quantity must be one or more\n from the same product',
+                message: 'zeroQuantityAlert'.translate(context),
                 backgroundColor: Colors.red,
               );
             } else {
@@ -40,7 +41,7 @@ class DecreaseProductButton extends StatelessWidget {
 
               CustomAppAlerts.customToast(
                 context: context,
-                message: 'The quantity has been\n decreased by one',
+                message: 'decreaseCart'.translate(context),
                 backgroundColor: Colors.red,
               );
             }

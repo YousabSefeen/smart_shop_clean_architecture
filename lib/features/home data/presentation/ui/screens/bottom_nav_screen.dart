@@ -12,7 +12,6 @@ import 'package:shop_app_clean_architecture/features/home%20data/presentation/ui
 import '../../../../../core/common presentation/screens/no_internet_connection_screen.dart';
 import '../../../../../core/common presentation/widgets/custom_app_alerts.dart';
 import '../../../../../core/utils/app_routers.dart';
-import '../../../../../core/utils/global_constants.dart';
 import '../../../../../core/utils/theme and language/controller/theme_and_language_cubit.dart';
 import '../../../../cart/presentation/ui/screens/cart_screen.dart';
 import '../../../../favorites/presentation/ui/screens/favorites_screen.dart';

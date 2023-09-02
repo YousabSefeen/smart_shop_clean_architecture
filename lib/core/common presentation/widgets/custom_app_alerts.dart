@@ -48,7 +48,7 @@ class CustomAppAlerts {
         message,
 
         textStyle: TextStyle(
-          fontSize: 20.sp,
+          fontSize: 17.sp,
           color: Colors.white,
           fontWeight: FontWeight.w700,
         ),

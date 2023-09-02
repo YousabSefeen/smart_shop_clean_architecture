@@ -7,7 +7,7 @@ class EmptyScreen extends StatelessWidget {
   final double? topPadding;
 
   const EmptyScreen({
-    this.topPadding ,
+    this.topPadding,
     required this.text,
     required this.icon,
     Key? key,

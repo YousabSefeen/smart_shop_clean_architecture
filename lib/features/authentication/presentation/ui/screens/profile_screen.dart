@@ -5,7 +5,6 @@ import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/co
 
 import '../../../../../core/common presentation/widgets/custom_error_widget.dart';
 import '../../../../../core/utils/enums/request_state.dart';
-
 import '../../../../global widgets/loading_widget.dart';
 import '../../controller/cubit/auth_cubit.dart';
 import '../../controller/states/auth_states.dart';
@@ -116,10 +115,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               );
             case RequestState.error:
-              return  Center(
+              return Center(
                 child: CustomErrorWidget(
                   errorMessage: state.profileErrorMessage,
-                  errorCategoryName:'profile'.translate(context)  ,
+                  errorCategoryName: 'profile'.translate(context),
                 ),
               );
           }

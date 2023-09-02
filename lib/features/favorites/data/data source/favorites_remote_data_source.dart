@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:shop_app_clean_architecture/core/errors/failure.dart';
+
 import '../../../../core/utils/api_constants.dart';
 import '../../../../core/utils/global_constants.dart';
 import '../../domain/use cases/change_favorite_use_case.dart';
