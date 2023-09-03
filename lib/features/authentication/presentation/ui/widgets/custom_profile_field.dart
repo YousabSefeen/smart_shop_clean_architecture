@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/controller/theme_and_language_cubit.dart';
+
+import '../../../../../core/utils/app settings/controller/app_settings_cubit.dart';
 
 class CustomProfileField extends StatelessWidget {
   final String keyValue;

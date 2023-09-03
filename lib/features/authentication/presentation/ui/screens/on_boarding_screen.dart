@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app_clean_architecture/core/utils/app_routers.dart';
 
-import '../../../../global widgets/custom_indicator.dart';
+import '../../../../../core/common presentation/widgets/custom_indicator.dart';
 import 'login_screen.dart';
 
 class OnBoardingScreen extends StatefulWidget {

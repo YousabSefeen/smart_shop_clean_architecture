@@ -4,8 +4,8 @@ import '../../../features/home data/domain/base home repository/base_home_reposi
 import '../../../features/home data/domain/use cases/get_banners_use_case.dart';
 import '../../../features/home data/domain/use cases/get_products_use_cases.dart';
 import '../../../features/home data/presentation/controller/cubit/home_cubit.dart';
+import '../../utils/app settings/controller/app_settings_cubit.dart';
 import '../../utils/global_constants.dart';
-import '../../utils/theme and language/controller/theme_and_language_cubit.dart';
 
 class HomeServiceLocator {
   void init() {

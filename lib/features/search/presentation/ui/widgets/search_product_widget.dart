@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:shop_app_clean_architecture/core/utils/app%20settings/components/app_localizations.dart';
 import 'package:shop_app_clean_architecture/core/utils/app_routers.dart';
-import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 
 import '../../../../../core/common presentation/screens/product_details_screen.dart';
 import '../../../../cart/presentation/ui/widgets/cart_product_change_button.dart';

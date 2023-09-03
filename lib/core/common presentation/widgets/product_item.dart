@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
+import 'package:shop_app_clean_architecture/core/utils/app%20settings/components/app_localizations.dart';
 
 import '../../../features/cart/presentation/ui/widgets/cart_product_change_button.dart';
 import '../../../features/favorites/presentation/ui/widgets/favorite_product_change_button.dart';

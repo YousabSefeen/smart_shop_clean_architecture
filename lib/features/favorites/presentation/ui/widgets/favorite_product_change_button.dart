@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/utils/app settings/controller/app_settings_cubit.dart';
 import '../../../../../core/utils/global_constants.dart';
-import '../../../../../core/utils/theme and language/controller/theme_and_language_cubit.dart';
 import '../../controller/cubit/favorites_cubit.dart';
 import '../../controller/states/favorites_state.dart';
 

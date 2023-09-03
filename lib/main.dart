@@ -8,12 +8,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app_clean_architecture/core/utils/app_routers.dart';
 
 import 'core/services/initialize_services_locators.dart';
+import 'core/utils/app settings/components/app_localizations.dart';
+import 'core/utils/app settings/components/app_themes.dart';
+import 'core/utils/app settings/controller/app_settings_cubit.dart';
+import 'core/utils/app settings/controller/app_settings_states.dart';
 import 'core/utils/bloc_observer.dart';
 import 'core/utils/global_constants.dart';
-import 'core/utils/theme and language/components/app_localizations.dart';
-import 'core/utils/theme and language/components/app_themes.dart';
-import 'core/utils/theme and language/controller/theme_and_language_cubit.dart';
-import 'core/utils/theme and language/controller/theme_and_language_states.dart';
 import 'features/authentication/presentation/controller/cubit/auth_cubit.dart';
 import 'features/authentication/presentation/ui/screens/login_screen.dart';
 import 'features/authentication/presentation/ui/screens/on_boarding_screen.dart';

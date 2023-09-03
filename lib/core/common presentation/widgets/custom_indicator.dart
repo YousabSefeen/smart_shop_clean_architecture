@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/controller/theme_and_language_cubit.dart';
+
+import '../../utils/app settings/controller/app_settings_cubit.dart';
 
 class CustomIndicator extends StatelessWidget {
   final int index;

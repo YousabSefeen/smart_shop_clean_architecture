@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shop_app_clean_architecture/core/utils/app%20settings/components/app_localizations.dart';
 import 'package:shop_app_clean_architecture/core/utils/app_routers.dart';
-import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 import 'package:shop_app_clean_architecture/features/authentication/presentation/ui/screens/register_screen.dart';
 import 'package:shop_app_clean_architecture/features/authentication/presentation/ui/widgets/custom_logo.dart';
 

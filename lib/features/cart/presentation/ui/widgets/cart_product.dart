@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_clean_architecture/core/common%20presentation/widgets/custom_cached_network_image.dart';
-import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
+import 'package:shop_app_clean_architecture/core/utils/app%20settings/components/app_localizations.dart';
 
-import '../../../../../core/utils/theme and language/controller/theme_and_language_cubit.dart';
+import '../../../../../core/utils/app settings/controller/app_settings_cubit.dart';
 import '../../../domain/entities/cart_items.dart';
 import 'decrease_product_button.dart';
 import 'delete_product_from_cart.dart';

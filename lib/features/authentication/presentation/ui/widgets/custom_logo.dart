@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shop_app_clean_architecture/core/utils/app%20settings/components/app_localizations.dart';
 import 'package:shop_app_clean_architecture/core/utils/global_constants.dart';
-import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 
 class CustomLogo extends StatelessWidget {
   const CustomLogo({Key? key}) : super(key: key);

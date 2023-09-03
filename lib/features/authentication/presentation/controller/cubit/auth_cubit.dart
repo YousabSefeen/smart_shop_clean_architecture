@@ -4,8 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shop_app_clean_architecture/core/utils/app%20settings/components/app_localizations.dart';
 import 'package:shop_app_clean_architecture/core/utils/app_routers.dart';
-import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
 
 import '../../../../../core/base  use case/base_use_case.dart';
 import '../../../../../core/common presentation/widgets/custom_app_alerts.dart';

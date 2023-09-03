@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
-import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/controller/theme_and_language_cubit.dart';
-import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/controller/theme_and_language_states.dart';
+import 'package:shop_app_clean_architecture/core/utils/app%20settings/components/app_localizations.dart';
 
 import '../../../features/categories/presentation/controller/cubit/categories_cubit.dart';
 import '../../../features/home data/presentation/controller/cubit/home_cubit.dart';
 import '../../../features/home data/presentation/ui/screens/bottom_nav_screen.dart';
+import '../../utils/app settings/controller/app_settings_cubit.dart';
+import '../../utils/app settings/controller/app_settings_states.dart';
 import '../../utils/app_routers.dart';
 import '../widgets/custom_app_alerts.dart';
 

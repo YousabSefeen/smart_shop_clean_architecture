@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app_clean_architecture/core/common%20presentation/screens/empty_screen.dart';
-import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
+import 'package:shop_app_clean_architecture/core/utils/app%20settings/components/app_localizations.dart';
 
 import '../../../../../core/common presentation/widgets/custom_error_widget.dart';
 import '../../../../../core/utils/enums/request_state.dart';
-import '../../../../global widgets/loading_widget.dart';
+import '../../../../../core/common presentation/widgets/loading_widget.dart';
 import '../../../presentation/controller/cubit/favorites_cubit.dart';
 import '../../../presentation/controller/states/favorites_state.dart';
 import '../widgets/favorite_product.dart';

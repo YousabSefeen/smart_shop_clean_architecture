@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
+import 'package:shop_app_clean_architecture/core/utils/app%20settings/components/app_localizations.dart';
 
-import '../../../features/global widgets/custom_indicator.dart';
+import '../widgets/custom_indicator.dart';
 import '../../../features/home data/domain/entities/products.dart';
+import '../../utils/app settings/controller/app_settings_cubit.dart';
 import '../../utils/global_constants.dart';
-import '../../utils/theme and language/controller/theme_and_language_cubit.dart';
 import '../widgets/show_discount.dart';
 
 class ProductDetailsScreen extends StatefulWidget {

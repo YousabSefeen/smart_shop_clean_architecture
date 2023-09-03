@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/components/app_localizations.dart';
+import 'package:shop_app_clean_architecture/core/utils/app%20settings/components/app_localizations.dart';
 
-import '../controller/theme_and_language_cubit.dart';
+import '../controller/app_settings_cubit.dart';
 
-class LanguageChangeButton extends StatelessWidget {
-  const LanguageChangeButton({Key? key}) : super(key: key);
+class ThemeChangeButton extends StatelessWidget {
+  const ThemeChangeButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.sizeOf(context).height;
     ThemeData theme = Theme.of(context);
+    double height = MediaQuery.sizeOf(context).height;
+    final themeCubit = AppSettingsCubit.object(context);
+    final isDark = themeCubit.theme == ThemeMode.dark;
+
     return ListTile(
       contentPadding: EdgeInsets.only(top: height * 0.05),
       leading: CircleAvatar(
         radius: 20.r,
         backgroundColor: theme.secondaryHeaderColor,
-        child: Icon(
-          Icons.format_color_text_outlined,
-          color: theme.scaffoldBackgroundColor,
-        ),
+        child: Icon(Icons.color_lens, color: theme.scaffoldBackgroundColor),
       ),
       title: Text(
-        'language'.translate(context),
+        'theme'.translate(context),
         style: Theme.of(context).textTheme.titleSmall!.copyWith(
               fontSize: 20.sp,
               fontWeight: FontWeight.w800,
@@ -38,29 +38,32 @@ class LanguageChangeButton extends StatelessWidget {
             ),
         icon: Icon(
           Icons.keyboard_arrow_down_sharp,
-          color: theme.secondaryHeaderColor,
+          color: Theme.of(context).secondaryHeaderColor,
           size: 30.sp,
         ),
         underline: const SizedBox(),
         items: [
           DropdownMenuItem(
-            value: 'ar',
+            value: 'light',
             child: Text(
-              'arabic'.translate(context),
+              'lightMode'.translate(context),
             ),
           ),
           DropdownMenuItem(
-            value: 'en',
+            value: 'dark',
             child: Text(
-              'english'.translate(context),
+              'darkMode'.translate(context),
             ),
           ),
         ],
-        onChanged: (newLanguage) {
-          AppSettingsCubit.object(context).onChangeLanguage(
-            newLanguage!,
-            context,
-          );
+        onChanged: (newTheme) {
+          if (newTheme == 'light' && isDark == false) {
+            return;
+          } else if (newTheme == 'dark' && isDark == true) {
+            return;
+          } else {
+            themeCubit.changeTheme();
+          }
         },
       ),
     );

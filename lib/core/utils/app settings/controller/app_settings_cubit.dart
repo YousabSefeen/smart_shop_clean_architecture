@@ -4,13 +4,13 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shop_app_clean_architecture/core/utils/theme%20and%20language/controller/theme_and_language_states.dart';
 import 'package:shop_app_clean_architecture/features/cart/presentation/controller/cubit/cart_cubit.dart';
 import 'package:shop_app_clean_architecture/features/favorites/presentation/controller/cubit/favorites_cubit.dart';
 
 import '../../../../features/categories/presentation/controller/cubit/categories_cubit.dart';
 import '../../../../features/home data/presentation/controller/cubit/home_cubit.dart';
 import '../../global_constants.dart';
+import 'app_settings_states.dart';
 
 class AppSettingsCubit extends Cubit<AppSettingsState> {
   AppSettingsCubit() : super(AppSettingsInitialStates());
