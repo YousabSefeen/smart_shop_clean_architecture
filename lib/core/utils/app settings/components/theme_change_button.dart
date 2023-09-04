@@ -14,57 +14,71 @@ class ThemeChangeButton extends StatelessWidget {
     double height = MediaQuery.sizeOf(context).height;
     final themeCubit = AppSettingsCubit.object(context);
     final isDark = themeCubit.theme == ThemeMode.dark;
-
-    return ListTile(
-      contentPadding: EdgeInsets.only(top: height * 0.05),
-      leading: CircleAvatar(
-        radius: 20.r,
-        backgroundColor: theme.secondaryHeaderColor,
-        child: Icon(Icons.color_lens, color: theme.scaffoldBackgroundColor),
-      ),
-      title: Text(
-        'theme'.translate(context),
-        style: Theme.of(context).textTheme.titleSmall!.copyWith(
-              fontSize: 20.sp,
-              fontWeight: FontWeight.w800,
-          letterSpacing: language == 'en' ? 1.8 : 0,
-            ),
-      ),
-      trailing: DropdownButton(
-        dropdownColor: Theme.of(context).scaffoldBackgroundColor,
-        borderRadius: BorderRadius.circular(20.r),
-        style: Theme.of(context).textTheme.titleSmall!.copyWith(
-              fontSize: 18.sp,
-            ),
-        icon: Icon(
-          Icons.keyboard_arrow_down_sharp,
-          color: Theme.of(context).secondaryHeaderColor,
-          size: 30.sp,
+    return Container(
+      margin: const EdgeInsets.all(10),
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 5.h),
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.grey,
+          width: 2,
         ),
-        underline: const SizedBox(),
-        items: [
-          DropdownMenuItem(
-            value: 'light',
-            child: Text(
-              'lightMode'.translate(context),
-            ),
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          CircleAvatar(
+            radius: 15.r,
+            backgroundColor: theme.secondaryHeaderColor,
+            child: Icon(Icons.color_lens, color: theme.scaffoldBackgroundColor),
           ),
-          DropdownMenuItem(
-            value: 'dark',
-            child: Text(
-              'darkMode'.translate(context),
+          const SizedBox(width: 12),
+          Text(
+            'theme'.translate(context),
+            style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: language == 'en' ? 1 : 0,
+                ),
+          ),
+          const Spacer(),
+          DropdownButton(
+            dropdownColor: Theme.of(context).scaffoldBackgroundColor,
+            borderRadius: BorderRadius.circular(20.r),
+            style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  fontSize: 18.sp,
+                ),
+            icon: Icon(
+              Icons.keyboard_arrow_down_sharp,
+              color: Theme.of(context).secondaryHeaderColor,
+              size: 30.sp,
             ),
+            underline: const SizedBox(),
+            items: [
+              DropdownMenuItem(
+                value: 'light',
+                child: Text(
+                  'lightMode'.translate(context),
+                ),
+              ),
+              DropdownMenuItem(
+                value: 'dark',
+                child: Text(
+                  'darkMode'.translate(context),
+                ),
+              ),
+            ],
+            onChanged: (newTheme) {
+              if (newTheme == 'light' && isDark == false) {
+                return;
+              } else if (newTheme == 'dark' && isDark == true) {
+                return;
+              } else {
+                themeCubit.changeTheme();
+              }
+            },
           ),
         ],
-        onChanged: (newTheme) {
-          if (newTheme == 'light' && isDark == false) {
-            return;
-          } else if (newTheme == 'dark' && isDark == true) {
-            return;
-          } else {
-            themeCubit.changeTheme();
-          }
-        },
       ),
     );
   }

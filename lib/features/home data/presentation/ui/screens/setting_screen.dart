@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_clean_architecture/core/utils/app%20settings/components/app_localizations.dart';
 import 'package:shop_app_clean_architecture/core/utils/app_routers.dart';
 
+import '../../../../../core/common presentation/widgets/custom_app_alerts.dart';
 import '../../../../../core/utils/app settings/components/language_change_button.dart';
 import '../../../../../core/utils/app settings/components/theme_change_button.dart';
 import '../../../../authentication/presentation/controller/cubit/auth_cubit.dart';
@@ -26,45 +27,47 @@ class SettingScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(
             horizontal: width * 0.04,
           ),
-          child: LayoutBuilder(
-            builder: (context, constraints) => Column(
-              children: [
-                SizedBox(
-                  height: constraints.maxHeight * 0.17,
-                  child: customListTile(
-                    context: context,
-                    leadingIcon: Icons.person,
-                    title: 'account'.translate(context),
-                    trailing: IconButton(
-                      icon: Icon(
-                        Icons.arrow_forward_ios,
-                        color: theme.secondaryHeaderColor,
-                      ),
-                      onPressed: () => AppRouters.go(
-                          context: context, route: ProfileScreen.route),
-                    ),
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+              const ThemeChangeButton(),
+              const LanguageChangeButton(),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: width * 0.3),
+                child: const Divider(
+                    thickness: 2.5, color: Colors.blueGrey, height: 30),
+              ),
+              customListTile(
+                context: context,
+                leadingIcon: Icons.person,
+                title: 'account'.translate(context),
+                trailing: IconButton(
+                  icon: Icon(
+                    Icons.arrow_forward_ios,
+                    color: theme.secondaryHeaderColor,
                   ),
+                  onPressed: () => AppRouters.go(
+                      context: context, route: ProfileScreen.route),
                 ),
-                const Divider(),
-                SizedBox(
-                  height: constraints.maxHeight * 0.13,
-                  child: const LanguageChangeButton(),
-                ),
-                SizedBox(
-                  height: constraints.maxHeight * 0.13,
-                  child: const ThemeChangeButton(),
-                ),
-                SizedBox(height: constraints.maxHeight * 0.2),
-                ElevatedButton(
-                  onPressed: () => AuthCubit.object(context).logout(context),
-                  style: Theme.of(context).elevatedButtonTheme.style,
-                  child: Text(
-                    'logout'.translate(context),
-                    style: Theme.of(context).textTheme.labelSmall,
+              ),
+              customListTile(
+                context: context,
+                leadingIcon: Icons.login,
+                title: 'logout'.translate(context),
+                trailing: IconButton(
+                  icon: Icon(
+                    Icons.arrow_forward_ios,
+                    color: theme.secondaryHeaderColor,
                   ),
+                  onPressed: () {
+                    return CustomAppAlerts.logoutAlert(
+                      context: context,
+                      onLogout: () => AuthCubit.object(context).logout(context),
+                    );
+                  },
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

@@ -167,8 +167,8 @@ class CustomAppAlerts {
                 fontSize: 14.sp,
                 color: isDark ? Colors.grey : Colors.black,
                 fontWeight: FontWeight.w500,
+                letterSpacing: 0,
               ),
-              maxLines: 3,
             ),
             const SizedBox(height: 10),
             SizedBox(
