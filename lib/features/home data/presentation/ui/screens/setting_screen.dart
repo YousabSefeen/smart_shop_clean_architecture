@@ -77,9 +77,8 @@ class SettingScreen extends StatelessWidget {
     required BuildContext context,
     Widget? trailing,
   }) {
-    double height = MediaQuery.sizeOf(context).height;
-
     ThemeData theme = Theme.of(context);
+    double height = MediaQuery.sizeOf(context).height;
     return ListTile(
       contentPadding: EdgeInsets.only(top: height * 0.05),
       leading: CircleAvatar(
@@ -92,7 +91,6 @@ class SettingScreen extends StatelessWidget {
         style: Theme.of(context).textTheme.titleSmall!.copyWith(
               fontSize: 20.sp,
               fontWeight: FontWeight.w800,
-              letterSpacing: 1,
             ),
       ),
       trailing: trailing,

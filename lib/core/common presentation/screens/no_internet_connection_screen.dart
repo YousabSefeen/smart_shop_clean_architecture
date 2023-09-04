@@ -20,16 +20,18 @@ class NoInternetConnectionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AppSettingsCubit, AppSettingsState>(
       listener: (context, state) {
-        CustomAppAlerts.customDialog(
-          context: context,
-          message: 'connected'.translate(context),
-        );
-        AppRouters.goAndRemoveUntil(
-          context: context,
-          route: BottomNavigationScreen.route,
-        );
+        if (state is InternetConnectionState) {
+          AppRouters.goAndRemoveUntil(
+            context: context,
+            route: BottomNavigationScreen.route,
+          );
 
-        _reloadData(context);
+          _reloadData(context);
+          return CustomAppAlerts.customDialog(
+            context: context,
+            message: 'connected'.translate(context),
+          );
+        }
       },
       child: Scaffold(
         backgroundColor: Colors.white,

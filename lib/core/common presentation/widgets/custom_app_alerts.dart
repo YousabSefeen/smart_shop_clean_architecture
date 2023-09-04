@@ -3,6 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shop_app_clean_architecture/core/utils/app%20settings/components/app_localizations.dart';
+import 'package:shop_app_clean_architecture/core/utils/app%20settings/controller/app_settings_cubit.dart';
+
+import '../../utils/global_constants.dart';
 
 class CustomAppAlerts {
   static void customSnackBar({
@@ -72,11 +75,16 @@ class CustomAppAlerts {
     required BuildContext context,
     required String message,
   }) {
+    final bool isDark =
+        AppSettingsCubit.object(context).theme == ThemeMode.dark;
+    bool isEnglish = currentLocale == const Locale("en");
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
+                borderRadius: BorderRadius.circular(10),
+              ),
               title: TextButton.icon(
                 onPressed: null,
                 icon: const CircleAvatar(
@@ -90,9 +98,9 @@ class CustomAppAlerts {
                   'connected'.translate(context),
                   style: TextStyle(
                     fontSize: 18.sp,
-                    color: Colors.black,
+                    color: isDark ? Colors.grey : Colors.black,
                     fontWeight: FontWeight.w700,
-                    letterSpacing: 1,
+                    letterSpacing: isEnglish ? 1 : 0,
                   ),
                   maxLines: 4,
                 ),
@@ -102,8 +110,10 @@ class CustomAppAlerts {
                 style: GoogleFonts.lato(
                     textStyle: TextStyle(
                   fontSize: 17,
-                  color: Colors.grey.shade900,
+                  color: isDark ? Colors.grey : Colors.grey.shade600,
                   fontWeight: FontWeight.w600,
+                  letterSpacing: isEnglish ? 0.5 : 0,
+                  height: 1.2,
                 )),
               ),
               actions: [
@@ -125,6 +135,88 @@ class CustomAppAlerts {
             ));
   }
 
+//***
+
+  static void logoutAlert({
+    required BuildContext context,
+    required void Function()? onLogout,
+  }) {
+    final bool isDark =
+        AppSettingsCubit.object(context).theme == ThemeMode.dark;
+    bool isEnglish = currentLocale == const Locale("en");
+    double getLetterSpacing() {
+      if (isEnglish) {
+        return 1.0;
+      } else {
+        return 0.5;
+      }
+    }
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        title: Column(
+          children: [
+            Text(
+              'logoutAlert'.translate(context),
+              style: TextStyle(
+                fontSize: 14.sp,
+                color: isDark ? Colors.grey : Colors.black,
+                fontWeight: FontWeight.w500,
+              ),
+              maxLines: 3,
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              width: double.infinity,
+              height: 40,
+              child: ElevatedButton(
+                onPressed: onLogout,
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.red),
+                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)))),
+                child: Text(
+                  'logout'.translate(context),
+                  style: TextStyle(
+                    color: Colors.white,
+                    letterSpacing: getLetterSpacing(),
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              width: double.infinity,
+              height: 40,
+              child: ElevatedButton(
+                onPressed: () => Navigator.pop(context),
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.grey),
+                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)))),
+                child: Text(
+                  'cancel'.translate(context),
+                  style: TextStyle(
+                    color: Colors.black,
+                    letterSpacing: getLetterSpacing(),
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  //***
   static void alertNoInternet({
     required BuildContext context,
     required String message,

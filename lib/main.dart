@@ -117,8 +117,8 @@ class MyApp extends StatelessWidget {
                 }
                 return supportedLocales.first;
               },
-              theme: AppThemes.light,
-              darkTheme: AppThemes.dark,
+              theme: AppThemes.light(currentLocale),
+              darkTheme: AppThemes.dark(currentLocale),
               themeMode: AppSettingsCubit.object(context).theme,
               home: mainScreen,
               routes: AppRouters.routes,

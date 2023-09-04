@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_clean_architecture/core/utils/app%20settings/components/app_localizations.dart';
 
+import '../../global_constants.dart';
 import '../controller/app_settings_cubit.dart';
 
 class LanguageChangeButton extends StatelessWidget {
@@ -12,7 +13,7 @@ class LanguageChangeButton extends StatelessWidget {
     double height = MediaQuery.sizeOf(context).height;
     ThemeData theme = Theme.of(context);
     return ListTile(
-      contentPadding: EdgeInsets.only(top: height * 0.05),
+      contentPadding: EdgeInsets.only(top: height * 0.02),
       leading: CircleAvatar(
         radius: 20.r,
         backgroundColor: theme.secondaryHeaderColor,
@@ -26,14 +27,14 @@ class LanguageChangeButton extends StatelessWidget {
         style: Theme.of(context).textTheme.titleSmall!.copyWith(
               fontSize: 20.sp,
               fontWeight: FontWeight.w800,
-              letterSpacing: 1,
+          letterSpacing: language == 'en' ? 1.8 : 0,
             ),
       ),
       trailing: DropdownButton(
+        alignment: Alignment.center,
         dropdownColor: Theme.of(context).scaffoldBackgroundColor,
         borderRadius: BorderRadius.circular(20.r),
         style: Theme.of(context).textTheme.titleSmall!.copyWith(
-              letterSpacing: 1.5,
               fontSize: 18.sp,
             ),
         icon: Icon(
@@ -45,12 +46,14 @@ class LanguageChangeButton extends StatelessWidget {
         items: [
           DropdownMenuItem(
             value: 'ar',
+            alignment: Alignment.center,
             child: Text(
               'arabic'.translate(context),
             ),
           ),
           DropdownMenuItem(
             value: 'en',
+            alignment: Alignment.center,
             child: Text(
               'english'.translate(context),
             ),
