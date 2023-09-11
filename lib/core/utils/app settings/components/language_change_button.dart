@@ -9,7 +9,7 @@ class LanguageChangeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.sizeOf(context).height;
+
     ThemeData theme = Theme.of(context);
 
     return Container(

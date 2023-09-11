@@ -11,7 +11,7 @@ class ThemeChangeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
-    double height = MediaQuery.sizeOf(context).height;
+
     final themeCubit = AppSettingsCubit.object(context);
     final isDark = themeCubit.theme == ThemeMode.dark;
     return Container(

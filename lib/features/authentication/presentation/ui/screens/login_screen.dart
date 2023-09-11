@@ -70,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 textInputType: TextInputType.emailAddress,
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return 'field email must be not empty';
+                                    return 'please enter your email';
                                   } else if (!value.contains('@')) {
                                     return 'Invalid Email';
                                   } else {
@@ -84,7 +84,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 prefixIcon: Icons.lock_clock_outlined,
                                 textInputType: TextInputType.visiblePassword,
                                 validator: (value) {
-                                  if (value!.isEmpty || value.length < 5) {
+                                  if(value!.isEmpty ){
+                                    return 'please enter your password';
+                                  }
+                                 else if ( value.length < 5) {
                                     return 'Password is too short';
                                   } else {
                                     return null;
@@ -112,7 +115,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                       style: TextStyle(
                                           fontSize: 12.sp,
                                           color: Colors.black,
-                                          fontWeight: FontWeight.w600),
+                                          fontWeight: FontWeight.w600,
+                                      ),
                                     ),
                                   ),
                                   TextButton(
