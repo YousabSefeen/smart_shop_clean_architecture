@@ -70,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 textInputType: TextInputType.emailAddress,
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return 'please enter your email';
+                                    return 'Please enter your email';
                                   } else if (!value.contains('@')) {
                                     return 'Invalid Email';
                                   } else {
@@ -84,10 +84,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 prefixIcon: Icons.lock_clock_outlined,
                                 textInputType: TextInputType.visiblePassword,
                                 validator: (value) {
-                                  if(value!.isEmpty ){
-                                    return 'please enter your password';
-                                  }
-                                 else if ( value.length < 5) {
+                                  if (value!.isEmpty) {
+                                    return 'Please enter your password';
+                                  } else if (value.length < 5) {
                                     return 'Password is too short';
                                   } else {
                                     return null;
@@ -113,9 +112,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                     child: Text(
                                       'signUpQuestion'.translate(context),
                                       style: TextStyle(
-                                          fontSize: 12.sp,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w600,
+                                        fontSize: 12.sp,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                   ),

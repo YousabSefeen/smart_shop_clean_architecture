@@ -32,10 +32,14 @@ class CustomLoginField extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(bottom: 10.h),
       child: TextFormField(
+
         onFieldSubmitted: onFieldSubmitted,
         controller: controller,
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
+          errorStyle: TextStyle(
+            color: Colors.red,fontSize: 12.sp
+          ),
           contentPadding: EdgeInsets.symmetric(vertical: 10.h),
           hintText: hint,
           hintStyle: GoogleFonts.raleway(
