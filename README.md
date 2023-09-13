@@ -17,6 +17,8 @@ It also contains a dark mode and a light mode\
 -Localization ( English , Arabic )\
 -Responsive design\
 
+https://github.com/YousabSefeen/smart_shop_clean_architecture/assets/97704843/1eb8e7c7-d9bf-4b5e-81e3-29755cb9022b
+
 # Onboarding Screen
 ![on_boarding_screen-01](https://github.com/yousabgithub/smart_shop_clean_architecture/assets/97704843/0f238289-a130-4847-bd69-9e439fcd25c5)
 # Login && Sign up Screen
