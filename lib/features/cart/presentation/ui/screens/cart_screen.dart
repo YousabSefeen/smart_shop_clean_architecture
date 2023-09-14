@@ -5,9 +5,9 @@ import 'package:shop_app_clean_architecture/core/common%20presentation/widgets/c
 import 'package:shop_app_clean_architecture/core/utils/app%20settings/components/app_localizations.dart';
 
 import '../../../../../core/common presentation/screens/empty_screen.dart';
+import '../../../../../core/common presentation/widgets/loading_widget.dart';
 import '../../../../../core/utils/app settings/controller/app_settings_cubit.dart';
 import '../../../../../core/utils/enums/request_state.dart';
-import '../../../../../core/common presentation/widgets/loading_widget.dart';
 import '../../controller/cubit/cart_cubit.dart';
 import '../../controller/states/cart_states.dart';
 import '../widgets/cart_product.dart';

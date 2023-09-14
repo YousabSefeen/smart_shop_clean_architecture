@@ -4,8 +4,8 @@ import 'package:shop_app_clean_architecture/core/common%20presentation/screens/e
 import 'package:shop_app_clean_architecture/core/utils/app%20settings/components/app_localizations.dart';
 
 import '../../../../../core/common presentation/widgets/custom_error_widget.dart';
-import '../../../../../core/utils/enums/request_state.dart';
 import '../../../../../core/common presentation/widgets/loading_widget.dart';
+import '../../../../../core/utils/enums/request_state.dart';
 import '../../../presentation/controller/cubit/favorites_cubit.dart';
 import '../../../presentation/controller/states/favorites_state.dart';
 import '../widgets/favorite_product.dart';

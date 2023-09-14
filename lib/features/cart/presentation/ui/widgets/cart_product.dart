@@ -68,7 +68,6 @@ class CartProduct extends StatelessWidget {
                     SizedBox(
                       height: constraints.maxHeight * 0.3,
                       child: Row(
-                        //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           DecreaseProductButton(
                             quantity: quantity,
@@ -141,4 +140,3 @@ class CartProduct extends StatelessWidget {
     );
   }
 }
-

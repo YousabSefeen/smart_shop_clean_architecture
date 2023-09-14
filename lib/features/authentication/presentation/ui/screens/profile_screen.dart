@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_clean_architecture/core/utils/app%20settings/components/app_localizations.dart';
 
 import '../../../../../core/common presentation/widgets/custom_error_widget.dart';
-import '../../../../../core/utils/enums/request_state.dart';
 import '../../../../../core/common presentation/widgets/loading_widget.dart';
+import '../../../../../core/utils/enums/request_state.dart';
 import '../../controller/cubit/auth_cubit.dart';
 import '../../controller/states/auth_states.dart';
 import '../widgets/custom_profile_field.dart';

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_clean_architecture/core/utils/app%20settings/components/app_localizations.dart';
 
-import '../widgets/custom_indicator.dart';
 import '../../../features/home data/domain/entities/products.dart';
 import '../../utils/app settings/controller/app_settings_cubit.dart';
 import '../../utils/global_constants.dart';
+import '../widgets/custom_indicator.dart';
 import '../widgets/show_discount.dart';
 
 class ProductDetailsScreen extends StatefulWidget {

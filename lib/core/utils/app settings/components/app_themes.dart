@@ -49,7 +49,6 @@ class AppThemes {
           )),
         ),
       ),
-
       chipTheme: const ChipThemeData(
         backgroundColor: Color(0xfff48c06),
         elevation: 8,
