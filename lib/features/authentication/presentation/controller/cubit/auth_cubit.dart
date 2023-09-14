@@ -66,7 +66,8 @@ class AuthCubit extends Cubit<AuthStates> {
         if (r.status) {
           token = r.data!.token;
           pref.setString('token', token);
-          AppRouters.go(context: context, route: BottomNavigationScreen.route);
+          AppRouters.goAndReplacement(
+              context: context, route: BottomNavigationScreen.route);
           CustomAppAlerts.customToast(
             context: context,
             message: state.register!.message!,
@@ -109,7 +110,8 @@ class AuthCubit extends Cubit<AuthStates> {
           token = r.data!.token;
           pref.setString('token', token);
 
-          AppRouters.go(context: context, route: BottomNavigationScreen.route);
+          AppRouters.goAndReplacement(
+              context: context, route: BottomNavigationScreen.route);
           CustomAppAlerts.customToast(
             context: context,
             message: state.login!.message!,
