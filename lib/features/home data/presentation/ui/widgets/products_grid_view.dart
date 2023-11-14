@@ -10,8 +10,8 @@ import '../../../domain/entities/products.dart';
 import '../../controller/cubit/home_cubit.dart';
 import '../../controller/states/home_states.dart';
 
-class ProductsList extends StatelessWidget {
-  const ProductsList({super.key});
+class ProductsGridView extends StatelessWidget {
+  const ProductsGridView({super.key});
 
   @override
   Widget build(BuildContext context) {
