@@ -5,7 +5,7 @@ import 'package:shop_app_clean_architecture/core/utils/app%20settings/components
 import '../../../../../core/utils/app settings/controller/app_settings_cubit.dart';
 import '../../../../categories/presentation/ui/widgets/categories_list.dart';
 import '../widgets/banners_items.dart';
-import '../widgets/products_list.dart';
+import '../widgets/products_grid_view.dart';
 
 class HomeScreen extends StatelessWidget {
   static const route = 'HomeScreen';
@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
-              const ProductsList(),
+              const ProductsGridView(),
             ],
           ),
         ),
